@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Racing/_Scenes/Track Testing.unity
-  isLoaded: 1
-  isActive: 1
