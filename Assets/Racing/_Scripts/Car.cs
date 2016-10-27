@@ -29,8 +29,6 @@ public class Car : MonoBehaviour {
 
 		for(int i = 0; i < gearRatios.Length;i++) {
 
-			Debug.Log(i);
-
 			carStats.gearTopSpeeds.Add(((carStats.engineTorque / 60) / (gearRatios[i] * carStats.transmission)) * c);
 			                         
 		}
