@@ -16,7 +16,6 @@ public class PlayerNetworkManager : NetworkBehaviour {
 		if (!this.isLocalPlayer) {
 			
 			gameObject.tag = "Online";
-			playerInputScript.enabled = false;
 			return;
 
 		}

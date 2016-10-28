@@ -17,9 +17,9 @@ public class PlayerInput : NetworkBehaviour {
 		car = GetComponent<Car> ();
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	[Command]
+	void Cmd_Input(){
 
 		h = Input.GetAxisRaw("Horizontal") * s;
 		v = Input.GetAxisRaw("Vertical") * s;
@@ -38,6 +38,17 @@ public class PlayerInput : NetworkBehaviour {
 		}*/
 
 		car.Drive (h,v,b);
+
+	}
+	
+	// Update is called once per frame
+	void Update () {
+
+		if (!isLocalPlayer)
+			return;
+
+
+		Cmd_Input ();
 	
 	}
 }
