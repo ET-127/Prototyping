@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class PlayerInput : MonoBehaviour {
+public class PlayerInput : NetworkBehaviour {
 
 	public float h;
 	public float v;
