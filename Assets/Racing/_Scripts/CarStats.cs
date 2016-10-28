@@ -17,8 +17,8 @@ public class CarStats : MonoBehaviour {
 	public float springBack;
 	public float dampingFront;
 	public float dampingBack;
-	public Vector2 Extremum = new Vector2(0,0);
-	public Vector2 Asymptote = new Vector2(0,0);
+	public Vector2 Extremum = new Vector2(0.2f,1);
+	public Vector2 Asymptote = new Vector2(0.5f,0.75f);
 
 	public float downForceModifier;
 	public float turnTime;
