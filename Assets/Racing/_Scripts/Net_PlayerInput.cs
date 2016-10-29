@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class PlayerInput : MonoBehaviour {
+public class Net_PlayerInput : NetworkBehaviour {
 
 	public float h;
 	public float v;
@@ -17,9 +18,8 @@ public class PlayerInput : MonoBehaviour {
 	
 	}
 
-	
-	// Update is called once per frame
-	void Update () {
+	[Command]
+	void Cmd_Input(){
 
 		h = Input.GetAxisRaw("Horizontal") * s;
 		v = Input.GetAxisRaw("Vertical") * s;
@@ -38,6 +38,17 @@ public class PlayerInput : MonoBehaviour {
 		}*/
 
 		car.Drive (h,v,b);
+
+	}
+	
+	// Update is called once per frame
+	void Update () {
+
+		if (!isLocalPlayer)
+			return;
+
+
+		Cmd_Input ();
 	
 	}
 }
