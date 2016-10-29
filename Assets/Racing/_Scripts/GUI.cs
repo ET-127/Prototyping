@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Collections;
 
@@ -9,7 +10,7 @@ public class GUI : MonoBehaviour {
 
 	public void AIStart_Button(){
 
-		Application.LoadLevel (AIlevel);
+		SceneManager.LoadScene(AIlevel);
 
 	}
 

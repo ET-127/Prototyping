@@ -6,10 +6,6 @@ public class PlayerNetworkManager : NetworkBehaviour {
 	
 	public GameObject[] spawnPrefabs;
 
-	public PlayerInput playerInputScript;
-	public NetworkIdentity netID;
-	public NetworkTransform netTransform;
-
 	// Use this for initialization
 	void Start () {
 
@@ -27,11 +23,5 @@ public class PlayerNetworkManager : NetworkBehaviour {
 		}
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-
-	
-	}
 }
