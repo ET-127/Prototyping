@@ -11,6 +11,8 @@ public class OnlineManager : MonoBehaviour {
 			Destroy(GetComponent<NetworkTransform>());
 			Destroy (GetComponent<PlayerNetworkManager>());
 			Destroy (GetComponent<Net_PlayerInput>());
+			Destroy (GetComponent<NetworkTransformChild> ());
+			Destroy (GetComponent<NetworkTransformChild> ());
 			Destroy(GetComponent<NetworkIdentity>());
 			gameObject.AddComponent<PlayerInput> ();
 			return;

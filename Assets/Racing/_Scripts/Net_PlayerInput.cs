@@ -44,7 +44,7 @@ public class Net_PlayerInput : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!isLocalPlayer)
+		if (gameObject.tag != "Player")
 			return;
 
 
