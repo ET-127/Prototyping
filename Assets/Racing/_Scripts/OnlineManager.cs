@@ -8,14 +8,18 @@ public class OnlineManager : MonoBehaviour {
 
 		if(!NetworkManager.singleton){
 
+			for(int i =0;i < GetComponents<NetworkTransformChild>().Length;i++){
+
+				Destroy (GetComponents<NetworkTransformChild> ()[i]);
+
+			}
+
 			Destroy(GetComponent<NetworkTransform>());
 			Destroy (GetComponent<PlayerNetworkManager>());
 			Destroy (GetComponent<Net_PlayerInput>());
-			Destroy (GetComponent<NetworkTransformChild> ());
-			Destroy (GetComponent<NetworkTransformChild> ());
 			Destroy(GetComponent<NetworkIdentity>());
 			gameObject.AddComponent<PlayerInput> ();
-			return;
+			gameObject.SetActive (true);
 
 		}
 
