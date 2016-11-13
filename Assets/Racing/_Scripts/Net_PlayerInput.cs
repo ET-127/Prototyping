@@ -18,37 +18,29 @@ public class Net_PlayerInput : NetworkBehaviour {
 	
 	}
 
-	[Command]
-	void Cmd_Input(){
+	// Update is called once per frame
+	void Update () {
 
-		h = Input.GetAxisRaw("Horizontal") * s;
-		v = Input.GetAxisRaw("Vertical") * s;
+		if (!isLocalPlayer)
+			return;
+
+		h = Input.GetAxis("Horizontal") * s;
+		v = Input.GetAxis("Vertical") * s;
 		b = Input.GetKey (KeyCode.Space);
 
 		/*if (Input.GetKey(KeyCode.Q)) {
 
-			h = -0.5f;
+			h *= 0.5f;
 
 		}
 
 		if (Input.GetKey(KeyCode.E)) {
 
-			h = 0.5f;
+			h *= 0.5f;
 
 		}*/
 
-		car.Drive (h,v,b);
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-		if (gameObject.tag != "Player")
-			return;
-
-
-		Cmd_Input ();
+		car.Cmd_Drive (h,v,b);
 	
 	}
 }

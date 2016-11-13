@@ -29,7 +29,7 @@ public class CarStats : MonoBehaviour {
 	public float wheelDiameter;
 
 	public float transmission;
-	public int currentGear;
+	public int currentGear = 1;
 
 	public Rigidbody rb;
 
@@ -37,9 +37,10 @@ public class CarStats : MonoBehaviour {
 	public float acceleration;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 
 		rb = GetComponent<Rigidbody> ();
+		topSpeed = gearTopSpeeds [gearTopSpeeds.Count - 1];
 	
 	}
 

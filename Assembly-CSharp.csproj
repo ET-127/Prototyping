@@ -49,11 +49,14 @@
      <Compile Include="Assets\Racing\_Scripts\CarStats.cs" />
      <Compile Include="Assets\Racing\_Scripts\FollowCar.cs" />
      <Compile Include="Assets\Racing\_Scripts\GUI.cs" />
+     <Compile Include="Assets\Racing\_Scripts\GameModeManager.cs" />
+     <Compile Include="Assets\Racing\_Scripts\HoldPos.cs" />
      <Compile Include="Assets\Racing\_Scripts\Net_PlayerInput.cs" />
      <Compile Include="Assets\Racing\_Scripts\NetworkManagerAddOns.cs" />
-     <Compile Include="Assets\Racing\_Scripts\OnlineManager.cs" />
-     <Compile Include="Assets\Racing\_Scripts\PlayerInput.cs" />
+     <Compile Include="Assets\Racing\_Scripts\Place.cs" />
      <Compile Include="Assets\Racing\_Scripts\PlayerNetworkManager.cs" />
+     <Compile Include="Assets\Racing\_Scripts\Track.cs" />
+     <Compile Include="Assets\Racing\_Scripts\Trigger.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

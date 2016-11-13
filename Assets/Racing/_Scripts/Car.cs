@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Car : MonoBehaviour {
+public class Car : NetworkBehaviour {
 
 	public WheelCollider[] wheels; //List of wheel colliders owned by the car
 	public List<MeshRenderer> wheelMeshes = new List<MeshRenderer>(); //List of rendered wheels
@@ -99,17 +100,17 @@ public class Car : MonoBehaviour {
 
 	void SwitchGear(){
 
-		if (carStats.currentSpeed > gearTopSpeeds [carStats.currentGear]){
+		if (carStats.currentSpeed >= gearTopSpeeds [carStats.currentGear]){
 
 			carStats.currentGear++;
 
-		} else if(carStats.currentSpeed < gearTopSpeeds [carStats.currentGear]){
+		} else if(carStats.currentGear - 1 > -1 && carStats.currentSpeed <= gearTopSpeeds [carStats.currentGear - 1]){
 
 			carStats.currentGear--;
 
 		}
 
-		carStats.currentGear = Mathf.Clamp(carStats.currentGear,0, gearTopSpeeds.Length - 1);
+		carStats.currentGear = Mathf.Clamp(carStats.currentGear,0 , gearTopSpeeds.Length - 1);
 
 	}
 	
@@ -163,13 +164,13 @@ public class Car : MonoBehaviour {
 			wheels [i].GetWorldPose (out wheelPos, out wheelRot);
 
 			wheelMeshes [i].transform.position  = wheelPos;
-			wheelMeshes [i].transform.rotation = Quaternion.Euler(wheelRot.eulerAngles - new Vector3(0,0,90));
+			wheelMeshes [i].transform.rotation = Quaternion.Euler(wheelRot.eulerAngles);
 
 		}
 
 	}
 
-	public void Drive(float h,float v,bool b){
+	public void Cmd_Drive(float h,float v,bool b){
 
 		for (int i = 0; i < wheels.Length - 2; i++) {
 

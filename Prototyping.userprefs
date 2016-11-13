@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Racing/_Scripts/OnlineManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Racing/_Scripts/Place.cs">
     <Files>
-      <File FileName="Assets/Racing/_Scripts/FollowCar.cs" Line="16" Column="1" />
-      <File FileName="Assets/Racing/_Scripts/OnlineManager.cs" Line="14" Column="5" />
-      <File FileName="Assets/Racing/_Scripts/Net_PlayerInput.cs" Line="1" Column="1" />
-      <File FileName="Assets/Racing/_Scripts/Car.cs" Line="1" Column="1" />
-      <File FileName="Assets/Racing/_Scripts/CarStats.cs" Line="1" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/FollowCar.cs" Line="27" Column="72" />
+      <File FileName="Assets/Racing/_Scripts/Net_PlayerInput.cs" Line="36" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/Car.cs" Line="113" Column="61" />
+      <File FileName="Assets/Racing/_Scripts/CarStats.cs" Line="32" Column="28" />
       <File FileName="Assets/Racing/_Scripts/GUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/PlayerNetworkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/Place.cs" Line="58" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
