@@ -17,8 +17,10 @@ public class CarStats : MonoBehaviour {
 	public float springBack;
 	public float dampingFront;
 	public float dampingBack;
-	public Vector2 Extremum = new Vector2(0.2f,1);
-	public Vector2 Asymptote = new Vector2(0.5f,0.75f);
+	public Vector2 ExtremumF = new Vector2(0.4f,1);
+	public Vector2 AsymptoteF = new Vector2(0.8f,0.5f);
+	public Vector2 ExtremumS = new Vector2(0.2f,1);
+	public Vector2 AsymptoteS = new Vector2(0.5f,0.75f);
 
 	public float downForceModifier;
 	public float turnTime;
@@ -36,6 +38,8 @@ public class CarStats : MonoBehaviour {
 	public float currentSpeed;
 	public float acceleration;
 
+	public float c = 2.23694f;
+
 	// Use this for initialization
 	void Start () {
 
@@ -51,7 +55,8 @@ public class CarStats : MonoBehaviour {
 
 		torque = engineTorque * transmission * gearRatios [currentGear];
 
-		currentSpeed = rb.GetComponent<Rigidbody> ().velocity.magnitude;
+		currentSpeed = rb.velocity.magnitude * c;
+		rb.drag = (currentSpeed / topSpeed) * 0.2f;
 		acceleration = (currentSpeed - lspeed) / Time.fixedDeltaTime;
 		lspeed = currentSpeed;
 	

@@ -23,9 +23,8 @@ public class Net_PlayerInput : NetworkBehaviour {
 
 		if (!isLocalPlayer)
 			return;
-
-		h = Input.GetAxis("Horizontal") * s;
-		v = Input.GetAxis("Vertical") * s;
+		h = Input.GetAxisRaw("Horizontal") * s;
+		v = Input.GetAxisRaw("Vertical") * s;
 		b = Input.GetKey (KeyCode.Space);
 
 		/*if (Input.GetKey(KeyCode.Q)) {

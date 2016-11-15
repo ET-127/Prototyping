@@ -53,6 +53,7 @@
      <Compile Include="Assets\Racing\_Scripts\HoldPos.cs" />
      <Compile Include="Assets\Racing\_Scripts\Net_PlayerInput.cs" />
      <Compile Include="Assets\Racing\_Scripts\NetworkManagerAddOns.cs" />
+     <Compile Include="Assets\Racing\_Scripts\Options.cs" />
      <Compile Include="Assets\Racing\_Scripts\Place.cs" />
      <Compile Include="Assets\Racing\_Scripts\PlayerNetworkManager.cs" />
      <Compile Include="Assets\Racing\_Scripts\Track.cs" />

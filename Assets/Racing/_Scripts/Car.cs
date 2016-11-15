@@ -7,11 +7,18 @@ public class Car : NetworkBehaviour {
 
 	public WheelCollider[] wheels; //List of wheel colliders owned by the car
 	public List<MeshRenderer> wheelMeshes = new List<MeshRenderer>(); //List of rendered wheels
+	public List<TrailRenderer> skidmarks = new List<TrailRenderer>();
+	public GameObject skidMarkPrefab;
+
+	public float maxSlipLimitS;
+	public float maxSlipLimitF;
+
 	public float[] gearRatios;
 	public float[] gearTopSpeeds;
 	public float outputTorque;
 
-	public AnimationCurve frictionCurve;
+	public AnimationCurve forwardFrictionCurve;
+	public AnimationCurve sideFrictionCurve;
 
 	CarStats carStats; // Info about the car 
 	Rigidbody rb; // 
@@ -30,13 +37,19 @@ public class Car : NetworkBehaviour {
 
 		for(int i = 0; i < gearRatios.Length;i++) {
 
-			carStats.gearTopSpeeds.Add(((carStats.engineTorque / 60) / (gearRatios[i] * carStats.transmission)) * c);
+			carStats.gearTopSpeeds.Add( ((carStats.engineTorque / 60) / (gearRatios[i] * carStats.transmission)) * c * carStats.c);
 			                         
 		}
 
 		gearTopSpeeds = carStats.gearTopSpeeds.ToArray();
 
 		rb = GetComponent<Rigidbody> ();
+
+		for (int i = 0; i < wheels.Length; i++) {
+
+			skidmarks.Add (new TrailRenderer());
+
+		}
 
 		for (int i = 0; i < GetComponentsInChildren<MeshRenderer> ().Length; i++) {
 
@@ -45,6 +58,66 @@ public class Car : NetworkBehaviour {
 		}
 
 		wheelMeshes.RemoveAt (0);
+
+		SideFriction ();
+		ForwardFriction ();
+
+	}
+
+	void ForwardFriction(){
+
+		//Friction Stuff
+		WheelFrictionCurve frontFriction = wheels[0].forwardFriction;
+		WheelFrictionCurve rearFriction = wheels[0].forwardFriction;
+
+		frontFriction.stiffness = carStats.frontFrictionStiffness;
+		rearFriction.stiffness = carStats.rearFrictionStiffness;
+
+		//Front
+		//Slip = X,Value = Y.
+
+		//Extremum
+		frontFriction.extremumSlip = carStats.ExtremumF.x;
+		frontFriction.extremumValue = carStats.ExtremumF.y;
+
+		//Asymptote
+		frontFriction.asymptoteSlip = carStats.AsymptoteF.x;
+		frontFriction.asymptoteValue = carStats.AsymptoteF.y;
+
+		//Rear
+		//Slip = X,Value = Y.
+
+		//Extremum
+		rearFriction.extremumSlip = carStats.ExtremumF.x;
+		rearFriction.extremumValue = carStats.ExtremumF.y;
+
+		//Asymptote
+		rearFriction.asymptoteSlip = carStats.AsymptoteF.x;
+		rearFriction.asymptoteValue = carStats.AsymptoteF.y;
+
+		//Spring Stuff
+		JointSpring frontSuspension = wheels[0].suspensionSpring;
+		JointSpring rearSuspension = wheels[0].suspensionSpring;
+
+		frontSuspension.spring = carStats.springFront;
+		rearSuspension.spring = carStats.springBack;
+
+		for (int i = 0; i < wheels.Length - 2; i++) {
+
+			wheels[i].forwardFriction = frontFriction;
+
+		}
+
+		for (int i = 2; i < wheels.Length; i++) {
+
+			wheels[i].forwardFriction = rearFriction;
+
+		}
+
+
+	}
+
+	void SideFriction(){
 
 		//Friction Stuff
 		WheelFrictionCurve frontFriction = wheels[0].sidewaysFriction;
@@ -57,23 +130,23 @@ public class Car : NetworkBehaviour {
 		//Slip = X,Value = Y.
 
 		//Extremum
-		frontFriction.extremumSlip = carStats.Extremum.x;
-		frontFriction.extremumValue = carStats.Extremum.y;
+		frontFriction.extremumSlip = carStats.ExtremumS.x;
+		frontFriction.extremumValue = carStats.ExtremumS.y;
 
 		//Asymptote
-		frontFriction.asymptoteSlip = carStats.Asymptote.x;
-		frontFriction.asymptoteValue = carStats.Asymptote.y;
+		frontFriction.asymptoteSlip = carStats.AsymptoteS.x;
+		frontFriction.asymptoteValue = carStats.AsymptoteS.y;
 
 		//Rear
 		//Slip = X,Value = Y.
 
 		//Extremum
-		rearFriction.extremumSlip = carStats.Extremum.x;
-		rearFriction.extremumValue = carStats.Extremum.y;
+		rearFriction.extremumSlip = carStats.ExtremumS.x;
+		rearFriction.extremumValue = carStats.ExtremumS.y;
 
 		//Asymptote
-		rearFriction.asymptoteSlip = carStats.Asymptote.x;
-		rearFriction.asymptoteValue = carStats.Asymptote.y;
+		rearFriction.asymptoteSlip = carStats.AsymptoteS.x;
+		rearFriction.asymptoteValue = carStats.AsymptoteS.y;
 
 		//Spring Stuff
 		JointSpring frontSuspension = wheels[0].suspensionSpring;
@@ -96,6 +169,7 @@ public class Car : NetworkBehaviour {
 
 		}
 
+
 	}
 
 	void SwitchGear(){
@@ -113,16 +187,28 @@ public class Car : NetworkBehaviour {
 		carStats.currentGear = Mathf.Clamp(carStats.currentGear,0 , gearTopSpeeds.Length - 1);
 
 	}
-	
-	void Graph(){
 
-		frictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.Extremum.x, carStats.Extremum.y),new Keyframe(carStats.Asymptote.x, carStats.Asymptote.y));
-	
-		frictionCurve.keys[1].time = carStats.Extremum.x;
-		frictionCurve.keys[1].value = carStats.Extremum.y;
+	void FrontFrictionGraph(){
 
-		frictionCurve.keys[2].time = carStats.Asymptote.x;
-		frictionCurve.keys[2].value = carStats.Asymptote.y;
+		forwardFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.ExtremumF.x, carStats.ExtremumF.y),new Keyframe(carStats.AsymptoteF.x, carStats.AsymptoteF.y));
+
+		forwardFrictionCurve.keys[1].time = carStats.ExtremumF.x;
+		forwardFrictionCurve.keys[1].value = carStats.ExtremumF.y;
+
+		forwardFrictionCurve.keys[2].time = carStats.AsymptoteF.x;
+		forwardFrictionCurve.keys[2].value = carStats.AsymptoteF.y;
+
+	}
+	
+	void SideFrictionGraph(){
+
+		sideFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.ExtremumS.x, carStats.ExtremumS.y),new Keyframe(carStats.AsymptoteS.x, carStats.AsymptoteS.y));
+	
+		sideFrictionCurve.keys[1].time = carStats.ExtremumS.x;
+		sideFrictionCurve.keys[1].value = carStats.ExtremumS.y;
+
+		sideFrictionCurve.keys[2].time = carStats.AsymptoteS.x;
+		sideFrictionCurve.keys[2].value = carStats.AsymptoteS.y;
 
 			
 	}
@@ -130,10 +216,12 @@ public class Car : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		Graph ();
+		SideFrictionGraph ();
+		FrontFrictionGraph ();
 		SwitchGear ();
 		SpeedControl ();
 		CorrectWheelPos ();
+		Rpc_SkidMarks ();
 		DownForce ();
 	
 	}
@@ -170,11 +258,77 @@ public class Car : NetworkBehaviour {
 
 	}
 
+	[Client]
+	void Rpc_SkidMarks(){
+
+		for (int i = 0; i < wheels.Length; i++) {
+
+			WheelHit hit = new WheelHit();
+
+			wheels [i].GetGroundHit(out hit);
+
+			//Debug.Log (Mathf.Abs(hit.forwardSlip));
+
+			if (skidmarks[i] == null && (Mathf.Abs (hit.sidewaysSlip) > maxSlipLimitS || (Mathf.Abs(hit.forwardSlip) > maxSlipLimitF))) {
+
+				skidmarks[i] =  Instantiate(skidMarkPrefab).GetComponent<TrailRenderer>();
+				NetworkServer.Spawn (skidmarks[i].gameObject);
+
+				RaycastHit rayHit = new RaycastHit ();
+
+				Vector3 colliderCenterPoint = wheels [i].transform.TransformPoint (wheels [i].center);
+
+				if (Physics.Raycast (colliderCenterPoint, -wheels [i].transform.up, out rayHit, wheels [i].suspensionDistance + wheels [i].radius)) {
+
+					skidmarks[i].transform.position = rayHit.point + (wheels [i].transform.up * wheels [i].suspensionDistance);
+
+				} else {
+
+					skidmarks[i].transform.position = colliderCenterPoint - (wheels [i].transform.up * wheels [i].suspensionDistance);
+
+				}
+
+			} else if (skidmarks[i] != null && (Mathf.Abs (hit.sidewaysSlip) > maxSlipLimitS || Mathf.Abs(hit.forwardSlip) > maxSlipLimitF)) {
+
+				RaycastHit rayHit = new RaycastHit ();
+
+				Vector3 colliderCenterPoint = wheels [i].transform.TransformPoint (wheels [i].center);
+
+				if (Physics.Raycast (colliderCenterPoint, -wheels [i].transform.up, out rayHit, wheels [i].suspensionDistance + wheels [i].radius)) {
+
+					skidmarks[i].transform.position = rayHit.point + (wheels [i].transform.up * wheels [i].suspensionDistance);
+
+				} else {
+
+					skidmarks[i].transform.position = colliderCenterPoint - (wheels [i].transform.up * wheels [i].suspensionDistance);
+
+				}
+
+			} else if (skidmarks[i] != null && (Mathf.Abs (hit.sidewaysSlip) < maxSlipLimitS || Mathf.Abs(hit.forwardSlip) < maxSlipLimitF) ) {
+
+				Destroy(skidmarks[i].gameObject,skidmarks[i].time);
+				skidmarks [i] = null;
+
+			}
+
+		}
+
+	}
+
+	//[Command]
 	public void Cmd_Drive(float h,float v,bool b){
+
+		float turnSpeed = Mathf.Abs(1/h);
+
+		if(v == 0){
+
+			b = true;
+
+		}
 
 		for (int i = 0; i < wheels.Length - 2; i++) {
 
-			wheels[i].steerAngle = Mathf.Lerp(wheels[i].steerAngle,h * carStats.steerAngle,Time.deltaTime * (1/carStats.turnTime));
+			wheels[i].steerAngle = Mathf.Lerp(wheels[i].steerAngle,h * carStats.steerAngle,Time.deltaTime * turnSpeed);
 
 		}
 

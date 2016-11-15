@@ -39,7 +39,7 @@ public class GameModeManager : NetworkBehaviour {
 
 			} else if(cars[i].GetComponent<Place> ().finished){
 
-				cars[i].GetComponent<HoldPos> ().hold = true;
+				cars[i].GetComponent<Net_PlayerInput> ().enabled = false;
 
 			}
 
