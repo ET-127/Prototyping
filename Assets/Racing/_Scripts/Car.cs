@@ -20,6 +20,12 @@ public class Car : NetworkBehaviour {
 	public AnimationCurve forwardFrictionCurve;
 	public AnimationCurve sideFrictionCurve;
 
+	[SyncVar]
+	public float forwardSlip;
+
+	[SyncVar]
+	public float sidewaysSlip;
+
 	CarStats carStats; // Info about the car 
 	Rigidbody rb; // 
 
@@ -221,7 +227,7 @@ public class Car : NetworkBehaviour {
 		SwitchGear ();
 		SpeedControl ();
 		CorrectWheelPos ();
-		Rpc_SkidMarks ();
+		Cmd_SkidMarks ();
 		DownForce ();
 	
 	}
@@ -258,8 +264,8 @@ public class Car : NetworkBehaviour {
 
 	}
 
-	[Client]
-	void Rpc_SkidMarks(){
+	[Command]
+	void Cmd_SkidMarks(){
 
 		for (int i = 0; i < wheels.Length; i++) {
 
@@ -268,11 +274,12 @@ public class Car : NetworkBehaviour {
 			wheels [i].GetGroundHit(out hit);
 
 			//Debug.Log (Mathf.Abs(hit.forwardSlip));
+			sidewaysSlip = hit.sidewaysSlip;
+			forwardSlip = hit.forwardSlip;
 
-			if (skidmarks[i] == null && (Mathf.Abs (hit.sidewaysSlip) > maxSlipLimitS || (Mathf.Abs(hit.forwardSlip) > maxSlipLimitF))) {
+			if (skidmarks[i] == null && (Mathf.Abs (sidewaysSlip) > maxSlipLimitS || (Mathf.Abs(forwardSlip) > maxSlipLimitF))) {
 
 				skidmarks[i] =  Instantiate(skidMarkPrefab).GetComponent<TrailRenderer>();
-				NetworkServer.Spawn (skidmarks[i].gameObject);
 
 				RaycastHit rayHit = new RaycastHit ();
 
@@ -288,7 +295,7 @@ public class Car : NetworkBehaviour {
 
 				}
 
-			} else if (skidmarks[i] != null && (Mathf.Abs (hit.sidewaysSlip) > maxSlipLimitS || Mathf.Abs(hit.forwardSlip) > maxSlipLimitF)) {
+			} else if (skidmarks[i] != null && (Mathf.Abs (sidewaysSlip) > maxSlipLimitS || Mathf.Abs(forwardSlip) > maxSlipLimitF)) {
 
 				RaycastHit rayHit = new RaycastHit ();
 
@@ -304,7 +311,7 @@ public class Car : NetworkBehaviour {
 
 				}
 
-			} else if (skidmarks[i] != null && (Mathf.Abs (hit.sidewaysSlip) < maxSlipLimitS || Mathf.Abs(hit.forwardSlip) < maxSlipLimitF) ) {
+			} else if (skidmarks[i] != null && (Mathf.Abs (sidewaysSlip) < maxSlipLimitS || Mathf.Abs(forwardSlip) < maxSlipLimitF) ) {
 
 				Destroy(skidmarks[i].gameObject,skidmarks[i].time);
 				skidmarks [i] = null;
