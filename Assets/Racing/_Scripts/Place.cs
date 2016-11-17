@@ -63,7 +63,7 @@ public class Place : NetworkBehaviour {
 		} else {
 
 			gearText.text = carStats.currentGear.ToString ();
-			speedText.text = carStats.currentSpeed.ToString ("F1");
+			speedText.text = carStats.currentSpeed.ToString ("F1") + " mph";
 
 			if (carStats.currentGear > 0) {
 

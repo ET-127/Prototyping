@@ -30,7 +30,10 @@ public class Car : NetworkBehaviour {
 	Rigidbody rb; // 
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
+
+		if (!isLocalPlayer)
+			return;
 	
 		carStats = GetComponent<CarStats> ();
 		wheels = GetComponentsInChildren<WheelCollider> ();
@@ -219,8 +222,11 @@ public class Car : NetworkBehaviour {
 			
 	}
 
-	// Update is called once per frame
+	[Client]
 	void Update () {
+
+		if (!isLocalPlayer)
+			return;
 
 		SideFrictionGraph ();
 		FrontFrictionGraph ();
@@ -264,7 +270,26 @@ public class Car : NetworkBehaviour {
 
 	}
 
+	void GetSlip(WheelHit hit){
+
+		if(!isLocalPlayer){
+
+			hit.sidewaysSlip = sidewaysSlip;
+			hit.forwardSlip = forwardSlip;
+
+		}
+
+	}
+
 	[Command]
+	void Cmd_SendSlip(WheelHit hit){
+
+		sidewaysSlip = hit.sidewaysSlip;
+		forwardSlip = hit.forwardSlip;
+
+	}
+
+	[Client]
 	void Cmd_SkidMarks(){
 
 		for (int i = 0; i < wheels.Length; i++) {
@@ -274,8 +299,8 @@ public class Car : NetworkBehaviour {
 			wheels [i].GetGroundHit(out hit);
 
 			//Debug.Log (Mathf.Abs(hit.forwardSlip));
-			sidewaysSlip = hit.sidewaysSlip;
-			forwardSlip = hit.forwardSlip;
+
+			Cmd_SendSlip (hit);
 
 			if (skidmarks[i] == null && (Mathf.Abs (sidewaysSlip) > maxSlipLimitS || (Mathf.Abs(forwardSlip) > maxSlipLimitF))) {
 
@@ -335,7 +360,7 @@ public class Car : NetworkBehaviour {
 
 		for (int i = 0; i < wheels.Length - 2; i++) {
 
-			wheels[i].steerAngle = Mathf.Lerp(wheels[i].steerAngle,h * carStats.steerAngle,Time.deltaTime * turnSpeed);
+			wheels[i].steerAngle = Mathf.Lerp(wheels[i].steerAngle,Mathf.RoundToInt(h) * carStats.steerAngle,Time.deltaTime * turnSpeed);
 
 		}
 
