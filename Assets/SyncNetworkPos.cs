@@ -14,7 +14,9 @@ public class SyncNetworkPos : NetworkBehaviour {
 
 	public Transform transform;
 	public Quaternion rotation;
-	public float lerpRate;
+
+	public float lerpRatePos;
+	public float lerpRateRot;
 
 	public float posThreshold;
 	public float rotThreshold;
@@ -22,10 +24,11 @@ public class SyncNetworkPos : NetworkBehaviour {
 	void Start(){
 
 		transform = GetComponent<Transform> ();
+		//syncPos = transform.position;
 
 	}
 
-	void FixedUpdate () {
+	void Update () {
 
 		LerpPosition ();
 		LerpRotation ();
@@ -38,7 +41,7 @@ public class SyncNetworkPos : NetworkBehaviour {
 
 		if (!isLocalPlayer) {
 
-			transform.position = Vector3.Lerp (transform.position,syncPos,Time.fixedDeltaTime * lerpRate);
+			transform.position = Vector3.Lerp (transform.position,syncPos,Time.fixedDeltaTime * lerpRatePos);
 
 		}
 
@@ -48,7 +51,7 @@ public class SyncNetworkPos : NetworkBehaviour {
 
 		if (!isLocalPlayer) {
 
-			transform.rotation = Quaternion.Slerp (transform.rotation,syncRot,Time.fixedDeltaTime * lerpRate);
+			transform.rotation = Quaternion.Slerp (transform.rotation,syncRot,Time.fixedDeltaTime * lerpRateRot);
 
 		}
 
