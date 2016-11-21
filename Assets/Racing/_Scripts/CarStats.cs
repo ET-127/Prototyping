@@ -39,6 +39,7 @@ public class CarStats : MonoBehaviour {
 	public float acceleration;
 
 	public float c = 2.23694f;
+	public float dragConstant;
 
 	// Use this for initialization
 	void Start () {

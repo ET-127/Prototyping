@@ -32,11 +32,14 @@ public class Car : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
 
+
 		if (!isLocalPlayer)
 			return;
 	
 		carStats = GetComponent<CarStats> ();
 		wheels = GetComponentsInChildren<WheelCollider> ();
+		maxSlipLimitF = carStats.AsymptoteF.x;
+		maxSlipLimitS = carStats.ExtremumS.x;
 
 		gearRatios = carStats.gearRatios.ToArray();
 
@@ -354,13 +357,23 @@ public class Car : NetworkBehaviour {
 
 		if(v == 0){
 
-			b = true;
+			//b = true;
+
+		}
+
+		if (h > 0) {
+
+			h = 1;
+
+		} else if(h < 0){
+
+			h = -1;
 
 		}
 
 		for (int i = 0; i < wheels.Length - 2; i++) {
 
-			wheels[i].steerAngle = Mathf.Lerp(wheels[i].steerAngle,Mathf.RoundToInt(h) * carStats.steerAngle,Time.deltaTime * turnSpeed);
+			wheels[i].steerAngle = Mathf.Lerp(wheels[i].steerAngle,h * carStats.steerAngle,Time.deltaTime * turnSpeed);
 
 		}
 

@@ -5,16 +5,10 @@ using System.Collections;
 
 public class GUI : MonoBehaviour {
 
-	public string AIlevel;
+	public int map;
 	public GameObject netManager;
 
-	public void AIStart_Button(){
-
-		SceneManager.LoadScene(AIlevel);
-
-	}
-
-	public void MultiStart_Button(){
+	public void Start_Button(){
 
 		netManager.SetActive (true);
 		gameObject.SetActive (false);
