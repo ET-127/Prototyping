@@ -1,17 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Racing/_Scripts/Car.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Racing/_Scripts/GUI.cs">
     <Files>
-      <File FileName="Assets/Racing/_Scripts/Net_PlayerInput.cs" Line="32" Column="14" />
-      <File FileName="Assets/Racing/_Scripts/Car.cs" Line="309" Column="12" />
-      <File FileName="Assets/Racing/_Scripts/FollowCar.cs" Line="21" Column="2" />
-      <File FileName="Assets/Racing/_Scripts/CarStats.cs" Line="35" Column="2" />
-      <File FileName="Assets/Racing/_Scripts/GUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/GUI.cs" Line="13" Column="5" />
+      <File FileName="Assets/Racing/_Scripts/Net_PlayerInput.cs" Line="1" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/Car.cs" Line="1" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/CarStats.cs" Line="1" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/FollowCar.cs" Line="1" Column="1" />
       <File FileName="Assets/Racing/_Scripts/PlayerNetworkManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Racing/_Scripts/Place.cs" Line="80" Column="14" />
-      <File FileName="Assets/Racing/_Scripts/Options.cs" Line="7" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/Place.cs" Line="1" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/Options.cs" Line="1" Column="1" />
       <File FileName="Assets/Racing/_Scripts/HoldPos.cs" Line="1" Column="1" />
-      <File FileName="Assets/Racing/_Scripts/GameModeManager.cs" Line="42" Column="61" />
+      <File FileName="Assets/Racing/_Scripts/GameModeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Racing/_Scripts/CarFlip.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

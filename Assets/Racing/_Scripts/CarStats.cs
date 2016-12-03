@@ -57,7 +57,7 @@ public class CarStats : MonoBehaviour {
 		torque = engineTorque * transmission * gearRatios [currentGear];
 
 		currentSpeed = rb.velocity.magnitude * c;
-		rb.drag = (currentSpeed / topSpeed) * 0.2f;
+		rb.drag = (currentSpeed / topSpeed) * dragConstant;
 		acceleration = (currentSpeed - lspeed) / Time.fixedDeltaTime;
 		lspeed = currentSpeed;
 	

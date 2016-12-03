@@ -10,6 +10,7 @@ public class GUI : MonoBehaviour {
 
 	public void Start_Button(){
 
+		//netManager.GetComponent<NetworkLobbyManager> ().playScene = SceneManager.GetSceneAt(map).name;
 		netManager.SetActive (true);
 		gameObject.SetActive (false);
 

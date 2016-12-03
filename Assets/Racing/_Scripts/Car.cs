@@ -38,7 +38,7 @@ public class Car : NetworkBehaviour {
 	
 		carStats = GetComponent<CarStats> ();
 		wheels = GetComponentsInChildren<WheelCollider> ();
-		maxSlipLimitF = carStats.AsymptoteF.x;
+		//maxSlipLimitF = carStats.AsymptoteF.x;
 		maxSlipLimitS = carStats.ExtremumS.x;
 
 		gearRatios = carStats.gearRatios.ToArray();
@@ -386,7 +386,9 @@ public class Car : NetworkBehaviour {
 			} else {
 
 				wheels [i].brakeTorque = 0;
-				wheels[i].motorTorque = v * carStats.torque;
+
+				wheels[i].motorTorque = v * carStats.torque * 0.5f;
+
 
 			}
 

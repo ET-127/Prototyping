@@ -16,9 +16,19 @@ public class FollowCar : MonoBehaviour {
 		car = GameObject.FindGameObjectWithTag ("Player").transform;
 		optimum = car.FindChild ("Optimum").transform;
 		optimum.localPosition = posOffset;
+
+		StartCoroutine (changeFollowSpeed ());
 	
 	}
-	
+
+	IEnumerator changeFollowSpeed(){
+
+		yield return new WaitForSeconds (3);
+
+		smoothTimePos = 0.125f;
+
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
 
@@ -27,6 +37,7 @@ public class FollowCar : MonoBehaviour {
 		Vector3 wantedPos = new Vector3 (optimum.transform.position.x,posOffset.y,optimum.transform.position.z);
 
 		transform.position = Vector3.SmoothDamp (transform.position, wantedPos, ref currentVelPos, smoothTimePos);
+		//transform.position = wantedPos;
 
 	}
 }
