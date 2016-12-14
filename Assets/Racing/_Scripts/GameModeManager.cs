@@ -13,7 +13,7 @@ public class GameModeManager : NetworkBehaviour {
 
 	public List<Car> cars = new List<Car>();
 
-	[SyncVar]
+	//[SyncVar]
 	public int finishedCars;
 
 	void Start(){
@@ -29,40 +29,54 @@ public class GameModeManager : NetworkBehaviour {
 
 	}
 
+	[Server]
 	void Timer(){
 
 		for(int i = 0; i < cars.Count; i++) {
 
-			if (time >= 0 && cars[i].GetComponent<HoldPos> ().hold && !cars[i].GetComponent<Place> ().finished) {
-
-				cars[i].GetComponent<HoldPos> ().hold = false;
-
-			} else if(cars[i].GetComponent<Place> ().finished){
-
-				cars[i].GetComponent<Net_PlayerInput> ().enabled = false;
-
-			}
-
-			if (!cars[i].GetComponent<Place> ().finished) {
-
-				cars[i].GetComponent<Place> ().time = time;
-
-			} else {
-
-				if (!FinishedCars [i]) {
-
-					FinishedCars[i] = true;
-					Times[i] = cars[i].GetComponent<Place>().time;
-
-					finishedCars++;
-					cars[i].GetComponent<Place>().place =  finishedCars;
-
-			
-				} else {return;}
-				 
-			}
+			Rpc_SendTime (i);
 
 		}
+
+	}
+
+	public void Rpc_SendTime(int i){
+
+		if (time >= 0 && cars[i].GetComponent<HoldPos> ().hold && !cars[i].GetComponent<Place> ().finished) {
+
+			cars[i].GetComponent<HoldPos> ().hold = false;
+
+		} else if(cars[i].GetComponent<Place> ().finished){
+
+			cars[i].GetComponent<Net_PlayerInput> ().enabled = false;
+
+		}
+
+		if (!cars[i].GetComponent<Place> ().finished) {
+
+			cars[i].GetComponent<Place> ().time = time;
+
+		} else {
+
+			Rpc_Finish (i);
+
+		}
+
+	}
+		
+	[ClientRpc]
+	public void Rpc_Finish(int i){
+
+		if (!FinishedCars [i]) {
+
+			FinishedCars[i] = true;
+			Times[i] = cars[i].GetComponent<Place>().time;
+
+			finishedCars++;
+			cars[i].GetComponent<Place>().place =  finishedCars;
+
+
+		} else {return;}
 
 	}
 

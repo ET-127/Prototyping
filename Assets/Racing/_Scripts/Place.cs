@@ -12,9 +12,10 @@ public class Place : NetworkBehaviour {
 	[SyncVar]
 	public bool finished;
 	[SyncVar]
-	public int place = 0;
+	public int place = 1;
 
 	public float time;
+	public string text;
 
 	public Text timer;
 	public Text victoryScreen;
@@ -46,10 +47,24 @@ public class Place : NetworkBehaviour {
 		victoryPanel.SetActive (false);
 	}
 
+	[Command]
+	void Cmd_SendFinished(){
+
+		finished = true;
+
+	}
+
 	void Update () {
 
 		if (!isLocalPlayer)
 			return;
+
+		if (Input.GetKey (KeyCode.M)) {
+
+			hitTriggerOne = true;
+			hitTriggerTwo = true;
+
+		}
 
 		if (hitTriggerOne && hitTriggerTwo) {
 
@@ -58,7 +73,7 @@ public class Place : NetworkBehaviour {
 			gearSlider.value = 0;
 
 			timer.text = time.ToString ("F2");
-			finished = true;
+			Cmd_SendFinished ();
 
 		} else {
 
@@ -77,9 +92,17 @@ public class Place : NetworkBehaviour {
 
 		}
 
+		float min = 0;
+		float sec = 0;
+
+		min = (time / 60);
+		sec = 60 * (min - Mathf.Floor(min));
+
 		if (!finished) {
 
-			timer.text = time.ToString ("F2");
+			text = Mathf.Floor(min).ToString () + ":" + sec.ToString ("F2");
+
+			timer.text = text;
 			 
 		} else {
 
