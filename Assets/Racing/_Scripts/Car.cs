@@ -16,6 +16,7 @@ public class Car : NetworkBehaviour {
 	public float[] gearRatios;
 	public float[] gearTopSpeeds;
 	public float outputTorque;
+	public float turnTime;
 
 	public AnimationCurve forwardFrictionCurve;
 	public AnimationCurve sideFrictionCurve;
@@ -26,6 +27,8 @@ public class Car : NetworkBehaviour {
 	[SyncVar]
 	public float sidewaysSlip;
 
+	float refVel;
+	float turnVel;
 	CarStats carStats; // Info about the car 
 	Rigidbody rb; // 
 
@@ -284,15 +287,14 @@ public class Car : NetworkBehaviour {
 
 	}
 
-	[Command]
+	/*[Command]
 	void Cmd_SendSlip(WheelHit hit){
 
 		sidewaysSlip = hit.sidewaysSlip;
 		forwardSlip = hit.forwardSlip;
 
-	}
+	}*/
 
-	[Client]
 	void Cmd_SkidMarks(){
 
 		for (int i = 0; i < wheels.Length; i++) {
@@ -303,7 +305,7 @@ public class Car : NetworkBehaviour {
 
 			//Debug.Log (Mathf.Abs(hit.forwardSlip));
 
-			Cmd_SendSlip (hit);
+			//Cmd_SendSlip (hit);
 
 			if (skidmarks[i] == null && (Mathf.Abs (sidewaysSlip) > maxSlipLimitS || (Mathf.Abs(forwardSlip) > maxSlipLimitF))) {
 
@@ -353,27 +355,21 @@ public class Car : NetworkBehaviour {
 	//[Command]
 	public void Cmd_Drive(float h,float v,bool b){
 
-		float turnSpeed = Mathf.Abs(1/h);
-
 		if(v == 0){
 
 			//b = true;
 
 		}
 
-		if (h > 0) {
-
-			h = 1;
-
-		} else if(h < 0){
-
-			h = -1;
-
-		}
-
 		for (int i = 0; i < wheels.Length - 2; i++) {
+			
+			float angle = 0;
 
-			wheels[i].steerAngle = Mathf.Lerp(wheels[i].steerAngle,h * carStats.steerAngle,Time.deltaTime * turnSpeed);
+			//refVel = 1 / turnVel;
+
+			angle = Mathf.Clamp (h * carStats.steerAngle,-carStats.steerAngle,carStats.steerAngle);
+
+			wheels[i].steerAngle = Mathf.SmoothDampAngle(wheels[i].steerAngle,-angle,ref refVel,turnTime);
 
 		}
 
