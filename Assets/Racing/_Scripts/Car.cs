@@ -32,6 +32,33 @@ public class Car : NetworkBehaviour {
 	CarStats carStats; // Info about the car 
 	Rigidbody rb; // 
 
+	void FrontFrictionGraph(){
+
+		Debug.Log ("E: " + carStats.ExtremumS + "A: " + carStats.AsymptoteS);
+		forwardFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.ExtremumF.x, carStats.ExtremumF.y),new Keyframe(carStats.AsymptoteF.x, carStats.AsymptoteF.y));
+
+		forwardFrictionCurve.keys[1].time = carStats.ExtremumF.x;
+		forwardFrictionCurve.keys[1].value = carStats.ExtremumF.y;
+
+		forwardFrictionCurve.keys[2].time = carStats.AsymptoteF.x;
+		forwardFrictionCurve.keys[2].value = carStats.AsymptoteF.y;
+
+	}
+
+	void SideFrictionGraph(){
+
+		sideFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.ExtremumS.x, carStats.ExtremumS.y),new Keyframe(carStats.AsymptoteS.x, carStats.AsymptoteS.y));
+
+		sideFrictionCurve.keys[1].time = carStats.ExtremumS.x;
+		sideFrictionCurve.keys[1].value = carStats.ExtremumS.y;
+
+		sideFrictionCurve.keys[2].time = carStats.AsymptoteS.x;
+		sideFrictionCurve.keys[2].value = carStats.AsymptoteS.y;
+
+
+	}
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -202,32 +229,7 @@ public class Car : NetworkBehaviour {
 		carStats.currentGear = Mathf.Clamp(carStats.currentGear,0 , gearTopSpeeds.Length - 1);
 
 	}
-
-	void FrontFrictionGraph(){
-
-		forwardFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.ExtremumF.x, carStats.ExtremumF.y),new Keyframe(carStats.AsymptoteF.x, carStats.AsymptoteF.y));
-
-		forwardFrictionCurve.keys[1].time = carStats.ExtremumF.x;
-		forwardFrictionCurve.keys[1].value = carStats.ExtremumF.y;
-
-		forwardFrictionCurve.keys[2].time = carStats.AsymptoteF.x;
-		forwardFrictionCurve.keys[2].value = carStats.AsymptoteF.y;
-
-	}
-	
-	void SideFrictionGraph(){
-
-		sideFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.ExtremumS.x, carStats.ExtremumS.y),new Keyframe(carStats.AsymptoteS.x, carStats.AsymptoteS.y));
-	
-		sideFrictionCurve.keys[1].time = carStats.ExtremumS.x;
-		sideFrictionCurve.keys[1].value = carStats.ExtremumS.y;
-
-		sideFrictionCurve.keys[2].time = carStats.AsymptoteS.x;
-		sideFrictionCurve.keys[2].value = carStats.AsymptoteS.y;
-
-			
-	}
-
+		
 	[Client]
 	void Update () {
 

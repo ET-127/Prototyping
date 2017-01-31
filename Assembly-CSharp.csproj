@@ -75,6 +75,7 @@
      <Compile Include="Assets\Racing\_Scripts\SyncNetworkPos.cs" />
      <Compile Include="Assets\Racing\_Scripts\Track.cs" />
      <Compile Include="Assets\Racing\_Scripts\Trigger.cs" />
+     <Compile Include="Assets\UnrealCar.cs" />
      <None Include="Assets\Lobby\Documentation.txt" />
      <None Include="Assets\Lobby\Instruction.txt" />
      <None Include="Assets\Fonts\OpenSans\License!.txt" />
