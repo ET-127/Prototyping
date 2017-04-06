@@ -28,18 +28,6 @@ public class Net_PlayerInput : NetworkBehaviour {
 		v = Input.GetAxisRaw("Vertical") * s;
 		b = Input.GetKey (KeyCode.Space);
 
-		/*if (Input.GetKey(KeyCode.Q)) {
-
-			h *= 0.5f;
-
-		}
-
-		if (Input.GetKey(KeyCode.E)) {
-
-			h *= 0.5f;
-
-		}*/
-
 		car.Cmd_Drive (h,v,b);
 	
 	}

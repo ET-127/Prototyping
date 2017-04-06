@@ -28,9 +28,10 @@ public class CarStats : MonoBehaviour {
 	public int numOfGears;
 	public List<float> gearRatios;
 	public List<float> gearTopSpeeds;
-	public float wheelDiameter;
+    public float transmission;
 
-	public float transmission;
+    public float wheelDiameter;
+
 	public int currentGear = 1;
 
 	public Rigidbody rb;
@@ -39,13 +40,14 @@ public class CarStats : MonoBehaviour {
 	public float acceleration;
 
 	public float c = 2.23694f;
-	public float dragConstant;
+	public float drag;
 
 	// Use this for initialization
 	void Start () {
 
 		rb = GetComponent<Rigidbody> ();
 		topSpeed = gearTopSpeeds [gearTopSpeeds.Count - 1];
+        drag = rb.drag;
 	
 	}
 
@@ -57,7 +59,6 @@ public class CarStats : MonoBehaviour {
 		torque = engineTorque * transmission * gearRatios [currentGear];
 
 		currentSpeed = rb.velocity.magnitude * c;
-		rb.drag = (currentSpeed / topSpeed) * dragConstant;
 		acceleration = (currentSpeed - lspeed) / Time.fixedDeltaTime;
 		lspeed = currentSpeed;
 	

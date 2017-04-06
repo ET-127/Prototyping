@@ -21,7 +21,9 @@ public class Car : NetworkBehaviour {
 	public AnimationCurve forwardFrictionCurve;
 	public AnimationCurve sideFrictionCurve;
 
-	[SyncVar]
+    public Vector3 downForce;
+
+    [SyncVar]
 	public float forwardSlip;
 
 	[SyncVar]
@@ -111,9 +113,6 @@ public class Car : NetworkBehaviour {
 		//Friction Stuff
 		WheelFrictionCurve frontFriction = wheels[0].forwardFriction;
 		WheelFrictionCurve rearFriction = wheels[0].forwardFriction;
-
-		frontFriction.stiffness = carStats.frontFrictionStiffness;
-		rearFriction.stiffness = carStats.rearFrictionStiffness;
 
 		//Front
 		//Slip = X,Value = Y.
@@ -248,7 +247,9 @@ public class Car : NetworkBehaviour {
 
 	void DownForce(){
 
-		rb.AddForce(Vector3.down * (rb.velocity.magnitude / carStats.topSpeed) * carStats.downForceModifier);
+        downForce = Vector3.down * (0.5f * carStats.downForceModifier * carStats.drag * (carStats.currentSpeed * carStats.currentSpeed));
+
+        rb.AddForce(downForce);
 
 	}
 
@@ -289,13 +290,6 @@ public class Car : NetworkBehaviour {
 
 	}
 
-	/*[Command]
-	void Cmd_SendSlip(WheelHit hit){
-
-		sidewaysSlip = hit.sidewaysSlip;
-		forwardSlip = hit.forwardSlip;
-
-	}*/
 
 	void Cmd_SkidMarks(){
 
@@ -304,10 +298,6 @@ public class Car : NetworkBehaviour {
 			WheelHit hit = new WheelHit();
 
 			wheels [i].GetGroundHit(out hit);
-
-			//Debug.Log (Mathf.Abs(hit.forwardSlip));
-
-			//Cmd_SendSlip (hit);
 
 			if (skidmarks[i] == null && (Mathf.Abs (sidewaysSlip) > maxSlipLimitS || (Mathf.Abs(forwardSlip) > maxSlipLimitF))) {
 

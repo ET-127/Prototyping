@@ -8,6 +8,7 @@ public class FollowCar : MonoBehaviour {
 	public Vector3 posOffset;
 
 	public Vector3 currentVelPos;
+    public float lookSpeed;
 	public float smoothTimePos = 0.3f;
 
 	// Use this for initialization
@@ -32,7 +33,10 @@ public class FollowCar : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		transform.LookAt (car.transform.position /* + car.GetComponent<Rigibody>().velocity */);
+        Quaternion targetRotation = Quaternion.LookRotation((car.transform.position + new Vector3(-car.GetComponent<Rigidbody>().velocity.normalized.x,0, -car.GetComponent<Rigidbody>().velocity.normalized.z) * 3f) - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation,targetRotation,Time.deltaTime * lookSpeed);
+
+		//transform.LookAt (car.transform.position + car.GetComponent<Rigidbody>().velocity);
 
 		Vector3 wantedPos = new Vector3 (optimum.transform.position.x,optimum.transform.position.y,optimum.transform.position.z);
 
