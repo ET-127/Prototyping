@@ -47,13 +47,13 @@ public class Car : NetworkBehaviour {
         if (carStats.currentGear > 0)
         {
 
-            carRev.pitch = 1f + (carStats.currentSpeed) / (carStats.gearTopSpeeds[carStats.currentGear]);
+            carRev.pitch = 0.5f + (carStats.currentSpeed) / (carStats.gearTopSpeeds[carStats.currentGear]);
 
         }
         else
         {
 
-            carRev.pitch = 1f + (carStats.currentSpeed / carStats.gearTopSpeeds[carStats.currentGear]);
+            carRev.pitch = 0.5f + (carStats.currentSpeed / carStats.gearTopSpeeds[carStats.currentGear]);
 
         }
 
