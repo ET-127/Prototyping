@@ -29,10 +29,48 @@ public class Car : NetworkBehaviour {
 	[SyncVar]
 	public float sidewaysSlip;
 
-	float refVel;
+    public AudioSource carRev;
+    public AudioSource carIdle;
+    public float engineDecay;
+    public float engineDecayTime;
+
+    float refVel;
 	float turnVel;
 	CarStats carStats; // Info about the car 
 	Rigidbody rb; // 
+
+
+
+    void CarAudio()
+    {
+
+        if (carStats.currentGear > 0)
+        {
+
+            carRev.pitch = 1f + (carStats.currentSpeed) / (carStats.gearTopSpeeds[carStats.currentGear]);
+
+        }
+        else
+        {
+
+            carRev.pitch = 1f + (carStats.currentSpeed / carStats.gearTopSpeeds[carStats.currentGear]);
+
+        }
+
+        carRev.volume = Mathf.SmoothDamp(carRev.volume, Input.GetAxisRaw("Vertical"),ref engineDecay,engineDecayTime);
+
+        if (carRev.volume < carIdle.volume)
+        {
+            carIdle.mute = false;
+            carRev.mute = true;
+
+        } else
+        {
+            carIdle.mute = true;
+            carRev.mute = false;
+
+        }
+    }
 
 	void FrontFrictionGraph(){
 
@@ -242,8 +280,9 @@ public class Car : NetworkBehaviour {
 		CorrectWheelPos ();
 		Cmd_SkidMarks ();
 		DownForce ();
-	
-	}
+        CarAudio();
+
+    }
 
 	void DownForce(){
 
