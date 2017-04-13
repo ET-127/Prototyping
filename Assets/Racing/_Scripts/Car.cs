@@ -74,7 +74,6 @@ public class Car : NetworkBehaviour {
 
 	void FrontFrictionGraph(){
 
-		Debug.Log ("E: " + carStats.ExtremumS + "A: " + carStats.AsymptoteS);
 		forwardFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.ExtremumF.x, carStats.ExtremumF.y),new Keyframe(carStats.AsymptoteF.x, carStats.AsymptoteF.y));
 
 		forwardFrictionCurve.keys[1].time = carStats.ExtremumF.x;
@@ -101,7 +100,6 @@ public class Car : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 
 		if (!isLocalPlayer)
 			return;

@@ -13,7 +13,7 @@ public class GameModeManager : NetworkBehaviour {
 
 	public List<Car> cars = new List<Car>();
 
-	//[SyncVar]
+	[SyncVar]
 	public int finishedCars;
 
 	void Start(){
@@ -29,7 +29,7 @@ public class GameModeManager : NetworkBehaviour {
 
 	}
 
-	[Server]
+    [Server]
 	void Timer(){
 
 		for(int i = 0; i < cars.Count; i++) {
@@ -40,6 +40,7 @@ public class GameModeManager : NetworkBehaviour {
 
 	}
 
+    [ClientRpc]
 	public void Rpc_SendTime(int i){
 
 		if (time >= 0 && cars[i].GetComponent<HoldPos> ().hold && !cars[i].GetComponent<Place> ().finished) {
@@ -58,31 +59,32 @@ public class GameModeManager : NetworkBehaviour {
 
 		} else {
 
-			Rpc_Finish (i);
+            if (!FinishedCars[i])
+            {
 
-		}
+                FinishedCars[i] = true;
+                Times[i] = cars[i].GetComponent<Place>().time;
+
+                cars[i].GetComponent<Place>().place = finishedCars + 1;
+                finishedCars++;
+
+            }
+            else { return; }
+
+        }
 
 	}
+    [ClientRpc]
+    public void Rpc_Finish(int i){
+
 		
-	[ClientRpc]
-	public void Rpc_Finish(int i){
-
-		if (!FinishedCars [i]) {
-
-			FinishedCars[i] = true;
-			Times[i] = cars[i].GetComponent<Place>().time;
-
-			finishedCars++;
-			cars[i].GetComponent<Place>().place =  finishedCars;
-
-
-		} else {return;}
 
 	}
 
 	// Update is called once per frame
 	void Update () {
 
+        if (!isServer) return;
 		time += Time.deltaTime;
 		Timer();
 

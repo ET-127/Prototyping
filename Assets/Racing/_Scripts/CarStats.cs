@@ -42,11 +42,13 @@ public class CarStats : MonoBehaviour {
 	public float c = 2.23694f;
 	public float drag;
 
-	// Use this for initialization
-	void Start () {
+    public float framesToWait = 2;
+
+    // Use this for initialization
+    void Start () {
 
 		rb = GetComponent<Rigidbody> ();
-		topSpeed = gearTopSpeeds [gearTopSpeeds.Count - 1];
+		
         drag = rb.drag;
 	
 	}
@@ -54,7 +56,13 @@ public class CarStats : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		float lspeed = 0;
+        if(Time.time == framesToWait * Time.deltaTime)
+        {
+            topSpeed = gearTopSpeeds[gearTopSpeeds.Count - 1];
+
+        }
+
+        float lspeed = 0;
 
 		torque = engineTorque * transmission * gearRatios [currentGear];
 

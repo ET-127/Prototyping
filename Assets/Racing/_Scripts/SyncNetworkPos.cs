@@ -24,7 +24,7 @@ public class SyncNetworkPos : NetworkBehaviour {
 	void Start(){
 
 		transform = GetComponent<Transform> ();
-		//syncPos = transform.position;
+		syncPos = NetworkManager.singleton.GetStartPosition().position;
 
 	}
 

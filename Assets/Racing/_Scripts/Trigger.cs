@@ -3,7 +3,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Trigger : NetworkBehaviour {
+public class Trigger : MonoBehaviour {
 
 	public bool isTriggerOne;
 	public bool isTriggerTwo;

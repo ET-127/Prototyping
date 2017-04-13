@@ -33,7 +33,7 @@ public class FollowCar : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        Quaternion targetRotation = Quaternion.LookRotation((car.transform.position + new Vector3(-car.GetComponent<Rigidbody>().velocity.normalized.x,0, -car.GetComponent<Rigidbody>().velocity.normalized.z) * 3f) - transform.position);
+        Quaternion targetRotation = Quaternion.LookRotation((car.transform.position + new Vector3(-Mathf.Clamp01(car.GetComponent<Rigidbody>().velocity.x),0, -Mathf.Clamp01(car.GetComponent<Rigidbody>().velocity.z) * 3f) - transform.position));
         transform.rotation = Quaternion.Slerp(transform.rotation,targetRotation,Time.deltaTime * lookSpeed);
 
 		//transform.LookAt (car.transform.position + car.GetComponent<Rigidbody>().velocity);
