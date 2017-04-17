@@ -9,14 +9,14 @@ public class SyncNetworkPos : NetworkBehaviour {
 	public Vector3 lastPos;
 
 	[SyncVar]
-	public Quaternion syncRot;
-	public Quaternion lastRot;
+	public Vector3 syncRot;
+	public Vector3 lastRot;
 
 	public Transform transform;
 	public Quaternion rotation;
 
-	public float lerpRatePos;
-	public float lerpRateRot;
+	public float speedPos;
+	public float speedRot;
 
 	public float posThreshold;
 	public float rotThreshold;
@@ -41,7 +41,7 @@ public class SyncNetworkPos : NetworkBehaviour {
 
 		if (!isLocalPlayer) {
 
-			transform.position = Vector3.Lerp (transform.position,syncPos,Time.fixedDeltaTime * lerpRatePos);
+			transform.Translate((syncPos - transform.position) * speedPos);
 
 		}
 
@@ -51,7 +51,7 @@ public class SyncNetworkPos : NetworkBehaviour {
 
 		if (!isLocalPlayer) {
 
-			transform.rotation = Quaternion.Slerp (transform.rotation,syncRot,Time.fixedDeltaTime * lerpRateRot);
+			transform.Rotate((syncRot - transform.eulerAngles) * speedRot);
 
 		}
 
@@ -65,7 +65,7 @@ public class SyncNetworkPos : NetworkBehaviour {
 	}
 
 	[Command]
-	void Cmd_SendRotToServer(Quaternion rot){
+	void Cmd_SendRotToServer(Vector3 rot){
 
 		syncRot = rot;
 
@@ -85,9 +85,9 @@ public class SyncNetworkPos : NetworkBehaviour {
 	[Client]
 	void TransmitRotation () {
 
-		if(isLocalPlayer && Vector3.Angle(transform.rotation.eulerAngles,lastRot.eulerAngles) > rotThreshold){
+		if(isLocalPlayer && Vector3.Angle(transform.rotation.eulerAngles,lastRot) > rotThreshold){
 
-			Cmd_SendRotToServer (transform.rotation);
+			Cmd_SendRotToServer (transform.rotation.eulerAngles);
 
 		}
 

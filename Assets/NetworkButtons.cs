@@ -8,25 +8,9 @@ public class NetworkButtons : NetworkBehaviour {
 
 	public Button btnHost;
 	public Button btnClient;
-	public InputField inpClient;
 
     public NetworkManager manager;
 	public NetworkDiscovery networkDiscovery;
-    public bool startBroadcasting;
-
-	// Use this for initialization
-	void Start () {
-
-        
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        
-		
-	}
 
 	public void BtnHost(){
 
