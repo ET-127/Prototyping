@@ -10,8 +10,9 @@ public class NetworkButtons : NetworkBehaviour {
 	public Button btnClient;
 	public InputField inpClient;
 
-	public NetworkManager manager;
-
+    public NetworkManager manager;
+	public NetworkDiscovery networkDiscovery;
+    public bool startBroadcasting;
 
 	// Use this for initialization
 	void Start () {
@@ -21,28 +22,43 @@ public class NetworkButtons : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (startBroadcasting == true)
+        {
+            if (manager.numPlayers > 1)
+            {
 
+                manager.StartHost();
+
+            }
+
+        }
 		
 	}
 
 	public void BtnHost(){
 
-		if(!manager.IsClientConnected() && !NetworkServer.active && manager.matchMaker == null){
+        /*if(!manager.IsClientConnected() && !NetworkServer.active && manager.matchMaker == null){
 
-			manager.StartHost ();
+            manager.StartHost();
 
 
-		}
+		}*/
+
+        networkDiscovery.StartAsServer();
+
+       
 
 	}
 
 	public void BtnClient(){
 
-		if (!manager.IsClientConnected () && !NetworkServer.active && manager.matchMaker == null) {
+        /*if (!manager.IsClientConnected () && !NetworkServer.active && manager.matchMaker == null) {
 
 			manager.StartClient ();
 
-		}
+		}*/
+
+        networkDiscovery.StartAsClient();
 
 	}
 
