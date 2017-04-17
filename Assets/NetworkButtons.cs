@@ -16,22 +16,15 @@ public class NetworkButtons : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        networkDiscovery.Initialize();
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (startBroadcasting == true)
-        {
-            if (manager.numPlayers > 1)
-            {
-
-                manager.StartHost();
-
-            }
-
-        }
+        
 		
 	}
 
@@ -43,7 +36,7 @@ public class NetworkButtons : NetworkBehaviour {
 
 
 		}*/
-
+        startBroadcasting = true;
         networkDiscovery.StartAsServer();
 
        
