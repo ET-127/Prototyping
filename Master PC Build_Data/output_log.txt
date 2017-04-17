@@ -1,19 +1,11 @@
-Mono path[0] = 'C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Data/Managed'
-Mono path[1] = 'C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Data/Mono'
-Mono config path = 'C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Data/Mono/etc'
-PlayerConnection initialized from C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55094
-Multi-casting "[IP] 192.168.1.100 [Port] 55094 [Flags] 2 [Guid] 1847825821 [EditorId] 3933876378 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-FRSTGOG) [Debug] 0" to [225.0.0.222:54997]...
-Started listening to [0.0.0.0:55094]
-PlayerConnection already initialized - listening to [0.0.0.0:55094]
-Player data archive not found at `C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.0f3 (497a0f351392)
+Initialize engine version: 5.6.0f3 (497a0f351392)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1080 Ti (ID=0x1b06)
-    Vendor:   NVIDIA
-    VRAM:     3072 MB
-    Driver:   22.21.13.8165
+    Renderer: Intel(R) Iris(TM) Graphics 5100 (ID=0xa2e)
+    Vendor:   Intel
+    VRAM:     1136 MB
+    Driver:   20.19.15.4531
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -23,373 +15,113 @@ Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build
 Loading C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.017 seconds
+- Completed reload, in  0.038 seconds
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\System.dll (this message is harmless)
-desktop: 2560x1440 59Hz; virtual: 2560x1440 at 0,0
+desktop: 2560x1600 60Hz; virtual: 2560x1600 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.979870 ms
-Setting up 4 worker threads for Enlighten.
-  Thread -> id: 473c -> priority: 1 
-  Thread -> id: 46d0 -> priority: 1 
-  Thread -> id: 46f4 -> priority: 1 
-  Thread -> id: 46f0 -> priority: 1 
+UnloadTime: 1.744089 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: c30 -> priority: 1 
+  Thread -> id: acc -> priority: 1 
 NetworkDiscovery set broadcast data to:NetworkManager:localhost:7777
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:Log(Object)
-UnityEngine.Networking.NetworkDiscovery:Initialize() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkDiscovery.cs:190)
-NetworkButtons:Start() (at C:\Users\Eyitayo\Documents\GitHub\Prototyping\Assets\NetworkButtons.cs:20)
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/NetworkDiscovery.cs Line: 190)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-A connection has already been set as ready. There can only be one.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:Ready(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:291)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1115)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+DontDestroyOnLoad only work for root GameObjects or components on root GameObjects.
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 291)
+(Filename:  Line: 462)
 
-ClientScene::AddPlayer: playerControllerId of 0 already in use.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16, MessageBase) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:180)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:133)
-UnityEngine.Networking.ClientScene:AddPlayer(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:127)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1118)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+Warning: no free slot for incoming connection
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+Log: connection {8} has been disconnected by timeout; address {::ffff:192.168.1.102:60026}
+Empty player list given to NetworkServer.Destroy(), nothing to do.
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 180)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-A connection has already been set as ready. There can only be one.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:Ready(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:291)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1115)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+ServerDisconnected due to error: Timeout
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 291)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ClientScene::AddPlayer: playerControllerId of 0 already in use.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16, MessageBase) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:180)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:133)
-UnityEngine.Networking.ClientScene:AddPlayer(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:127)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1118)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+Log: connection {6} has been disconnected by timeout; address {::ffff:192.168.1.102:60024}
+Empty player list given to NetworkServer.Destroy(), nothing to do.
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 180)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-A connection has already been set as ready. There can only be one.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:Ready(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:291)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1115)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+ServerDisconnected due to error: Timeout
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 291)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ClientScene::AddPlayer: playerControllerId of 0 already in use.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16, MessageBase) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:180)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:133)
-UnityEngine.Networking.ClientScene:AddPlayer(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:127)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1118)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+Log: connection {5} has been disconnected by timeout; address {::ffff:192.168.1.102:60023}
+Log: connection {3} has been disconnected by timeout; address {::ffff:192.168.1.102:60021}
+Log: connection {7} has been disconnected by timeout; address {::ffff:192.168.1.102:60025}
+Empty player list given to NetworkServer.Destroy(), nothing to do.
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 180)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-A connection has already been set as ready. There can only be one.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:Ready(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:291)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1115)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+Log: connection {1} has been disconnected by timeout; address {::ffff:192.168.1.102:60019}
+ServerDisconnected due to error: Timeout
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 291)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ClientScene::AddPlayer: playerControllerId of 0 already in use.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16, MessageBase) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:180)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:133)
-UnityEngine.Networking.ClientScene:AddPlayer(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:127)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1118)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+Empty player list given to NetworkServer.Destroy(), nothing to do.
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 180)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-A connection has already been set as ready. There can only be one.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:Ready(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:291)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1115)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+ServerDisconnected due to error: Timeout
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 291)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ClientScene::AddPlayer: playerControllerId of 0 already in use.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16, MessageBase) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:180)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:133)
-UnityEngine.Networking.ClientScene:AddPlayer(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:127)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1118)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+Empty player list given to NetworkServer.Destroy(), nothing to do.
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 180)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-A connection has already been set as ready. There can only be one.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:Ready(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:291)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1115)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+ServerDisconnected due to error: Timeout
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 291)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ClientScene::AddPlayer: playerControllerId of 0 already in use.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16, MessageBase) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:180)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:133)
-UnityEngine.Networking.ClientScene:AddPlayer(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:127)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1118)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+ServerDisconnected due to error: Timeout
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 180)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-A connection has already been set as ready. There can only be one.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:Ready(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:291)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1115)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+Log: connection {4} has been disconnected by timeout; address {::ffff:192.168.1.102:60022}
+Empty player list given to NetworkServer.Destroy(), nothing to do.
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 291)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ClientScene::AddPlayer: playerControllerId of 0 already in use.
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16, MessageBase) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:180)
-UnityEngine.Networking.ClientScene:AddPlayer(NetworkConnection, Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:133)
-UnityEngine.Networking.ClientScene:AddPlayer(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\ClientScene.cs:127)
-UnityEngine.Networking.NetworkManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1118)
-UnityEngine.Networking.NetworkLobbyManager:OnClientConnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:557)
-UnityEngine.Networking.NetworkManager:OnClientConnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:923)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:718)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+ServerDisconnected due to error: Timeout
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/ClientScene.cs Line: 180)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Log: Connected peer has not got free resources
-UNet Client Disconnect Error: NoResources
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.NetworkClient:GenerateDisconnectError(Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:797)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:747)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+Log: connection {2} has been disconnected by timeout; address {::ffff:192.168.1.102:60020}
+Empty player list given to NetworkServer.Destroy(), nothing to do.
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/NetworkClient.cs Line: 797)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-ClientDisconnected due to error: NoResources
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.NetworkManager:OnClientDisconnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1128)
-UnityEngine.Networking.NetworkLobbyManager:OnClientDisconnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:563)
-UnityEngine.Networking.NetworkManager:OnClientDisconnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:958)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:753)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
+ServerDisconnected due to error: Timeout
  
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/NetworkManager.cs Line: 1128)
-
-UnloadTime: 1.847344 ms
-System memory in use before: 46.7 MB.
-System memory in use after: 46.7 MB.
-
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 471.
-Total: 0.346453 ms (FindLiveObjects: 0.016579 ms CreateObjectMapping: 0.015116 ms MarkObjects: 0.307443 ms  DeleteObjects: 0.006826 ms)
-
-Log: Connected peer has not got free resources
-UNet Client Disconnect Error: NoResources
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.NetworkClient:GenerateDisconnectError(Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:797)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:747)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
- 
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/NetworkClient.cs Line: 797)
-
-ClientDisconnected due to error: NoResources
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.NetworkManager:OnClientDisconnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1128)
-UnityEngine.Networking.NetworkLobbyManager:OnClientDisconnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:563)
-UnityEngine.Networking.NetworkManager:OnClientDisconnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:958)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:753)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
- 
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/NetworkManager.cs Line: 1128)
-
-Log: Connected peer has not got free resources
-UNet Client Disconnect Error: NoResources
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.NetworkClient:GenerateDisconnectError(Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:797)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:747)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
- 
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/NetworkClient.cs Line: 797)
-
-ClientDisconnected due to error: NoResources
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:LogError(Object)
-UnityEngine.Networking.NetworkManager:OnClientDisconnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:1128)
-UnityEngine.Networking.NetworkLobbyManager:OnClientDisconnect(NetworkConnection) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkLobbyManager.cs:563)
-UnityEngine.Networking.NetworkManager:OnClientDisconnectInternal(NetworkMessage) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:958)
-UnityEngine.Networking.NetworkConnection:InvokeHandler(Int16, NetworkReader, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:220)
-UnityEngine.Networking.NetworkConnection:InvokeHandlerNoData(Int16) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkConnection.cs:202)
-UnityEngine.Networking.NetworkClient:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:753)
-UnityEngine.Networking.NetworkClient:UpdateClients() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:947)
-UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkIdentity.cs:1091)
- 
-(Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/NetworkManager.cs Line: 1128)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
