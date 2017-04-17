@@ -8,8 +8,8 @@ public class OverriddenNetworkLobbyManager : NetworkLobbyManager {
 	public NetworkDiscovery networkDiscovery;
 	public override void OnStartHost()
 	{
-		//networkDiscovery.Initialize ();
-		//networkDiscovery.StartAsServer ();
+		networkDiscovery.Initialize ();
+		networkDiscovery.StartAsServer ();
 		
 
 	}
