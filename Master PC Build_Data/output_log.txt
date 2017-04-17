@@ -2,10 +2,10 @@ Mono path[0] = 'C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Da
 Mono path[1] = 'C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Data/Mono'
 Mono config path = 'C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Data/Mono/etc'
 PlayerConnection initialized from C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55305
-Multi-casting "[IP] 192.168.1.105 [Port] 55305 [Flags] 2 [Guid] 2132515180 [EditorId] 3933876378 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-FRSTGOG) [Debug] 0" to [225.0.0.222:54997]...
-Started listening to [0.0.0.0:55305]
-PlayerConnection already initialized - listening to [0.0.0.0:55305]
+PlayerConnection initialized network socket : 0.0.0.0 55454
+Multi-casting "[IP] 192.168.1.105 [Port] 55454 [Flags] 2 [Guid] 343665703 [EditorId] 3933876378 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-FRSTGOG) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55454]
+PlayerConnection already initialized - listening to [0.0.0.0:55454]
 Player data archive not found at `C:/Users/Eyitayo/Documents/GitHub/Prototyping/Master PC Build_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.0f3 (497a0f351392)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -23,19 +23,19 @@ Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build
 Loading C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.017 seconds
+- Completed reload, in  0.016 seconds
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\System.dll (this message is harmless)
 desktop: 2560x1440 59Hz; virtual: 2560x1440 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.815786 ms
+UnloadTime: 0.880883 ms
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 13a0 -> priority: 1 
-  Thread -> id: a80 -> priority: 1 
-  Thread -> id: 37ac -> priority: 1 
-  Thread -> id: 391c -> priority: 1 
+  Thread -> id: 3b8c -> priority: 1 
+  Thread -> id: 3880 -> priority: 1 
+  Thread -> id: 349c -> priority: 1 
+  Thread -> id: 364c -> priority: 1 
 NetworkDiscovery set broadcast data to:NetworkManager:localhost:7777
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
@@ -46,3 +46,114 @@ NetworkButtons:Start() (at C:\Users\Eyitayo\Documents\GitHub\Prototyping\Assets\
  
 (Filename: C:/buildslave/unity/build/Extensions/Networking/Runtime/NetworkDiscovery.cs Line: 190)
 
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+maximum hosts cannot exceed {16}
+UnityEngine.Networking.NetworkTransport:AddHostWrapperWithoutIp(HostTopologyInternal, Int32, Int32, Int32)
+UnityEngine.Networking.NetworkTransport:AddHost(HostTopology, Int32, String) (at C:\buildslave\unity\build\artifacts\generated\common\modules\UNET\UNETworkingBindings.gen.cs:638)
+UnityEngine.Networking.NetworkTransport:AddHost(HostTopology, Int32) (at C:\buildslave\unity\build\artifacts\generated\common\modules\UNET\UNETworkingBindings.gen.cs:622)
+UnityEngine.Networking.NetworkClient:PrepareForConnect(Boolean) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:430)
+UnityEngine.Networking.NetworkClient:PrepareForConnect() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:399)
+UnityEngine.Networking.NetworkClient:Connect(String, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:302)
+UnityEngine.Networking.NetworkManager:StartClient(MatchInfo, ConnectionConfig) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:488)
+UnityEngine.Networking.NetworkManager:StartClient() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:511)
+OverriddenNetworkDiscovery:OnReceivedBroadcast(String, String) (at C:\Users\Eyitayo\Documents\GitHub\Prototyping\Assets\OverriddenNetworkDiscovery.cs:11)
+UnityEngine.Networking.NetworkDiscovery:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkDiscovery.cs:330)
+
+[C:/buildslave/unity/build/Runtime/Networking/UNETNetLibraryManager.cpp line 425] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/modules/UNET/UNETworkingBindings.gen.cs Line: 638)
+
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+maximum hosts cannot exceed {16}
+UnityEngine.Networking.NetworkTransport:AddHostWrapperWithoutIp(HostTopologyInternal, Int32, Int32, Int32)
+UnityEngine.Networking.NetworkTransport:AddHost(HostTopology, Int32, String) (at C:\buildslave\unity\build\artifacts\generated\common\modules\UNET\UNETworkingBindings.gen.cs:638)
+UnityEngine.Networking.NetworkTransport:AddHost(HostTopology, Int32) (at C:\buildslave\unity\build\artifacts\generated\common\modules\UNET\UNETworkingBindings.gen.cs:622)
+UnityEngine.Networking.NetworkClient:PrepareForConnect(Boolean) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:430)
+UnityEngine.Networking.NetworkClient:PrepareForConnect() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:399)
+UnityEngine.Networking.NetworkClient:Connect(String, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:302)
+UnityEngine.Networking.NetworkManager:StartClient(MatchInfo, ConnectionConfig) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:488)
+UnityEngine.Networking.NetworkManager:StartClient() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:511)
+OverriddenNetworkDiscovery:OnReceivedBroadcast(String, String) (at C:\Users\Eyitayo\Documents\GitHub\Prototyping\Assets\OverriddenNetworkDiscovery.cs:11)
+UnityEngine.Networking.NetworkDiscovery:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkDiscovery.cs:330)
+
+[C:/buildslave/unity/build/Runtime/Networking/UNETNetLibraryManager.cpp line 425] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/modules/UNET/UNETworkingBindings.gen.cs Line: 638)
+
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+maximum hosts cannot exceed {16}
+UnityEngine.Networking.NetworkTransport:AddHostWrapperWithoutIp(HostTopologyInternal, Int32, Int32, Int32)
+UnityEngine.Networking.NetworkTransport:AddHost(HostTopology, Int32, String) (at C:\buildslave\unity\build\artifacts\generated\common\modules\UNET\UNETworkingBindings.gen.cs:638)
+UnityEngine.Networking.NetworkTransport:AddHost(HostTopology, Int32) (at C:\buildslave\unity\build\artifacts\generated\common\modules\UNET\UNETworkingBindings.gen.cs:622)
+UnityEngine.Networking.NetworkClient:PrepareForConnect(Boolean) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:430)
+UnityEngine.Networking.NetworkClient:PrepareForConnect() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:399)
+UnityEngine.Networking.NetworkClient:Connect(String, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:302)
+UnityEngine.Networking.NetworkManager:StartClient(MatchInfo, ConnectionConfig) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:488)
+UnityEngine.Networking.NetworkManager:StartClient() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:511)
+OverriddenNetworkDiscovery:OnReceivedBroadcast(String, String) (at C:\Users\Eyitayo\Documents\GitHub\Prototyping\Assets\OverriddenNetworkDiscovery.cs:11)
+UnityEngine.Networking.NetworkDiscovery:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkDiscovery.cs:330)
+
+[C:/buildslave/unity/build/Runtime/Networking/UNETNetLibraryManager.cpp line 425] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/modules/UNET/UNETworkingBindings.gen.cs Line: 638)
+
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+maximum hosts cannot exceed {16}
+UnityEngine.Networking.NetworkTransport:AddHostWrapperWithoutIp(HostTopologyInternal, Int32, Int32, Int32)
+UnityEngine.Networking.NetworkTransport:AddHost(HostTopology, Int32, String) (at C:\buildslave\unity\build\artifacts\generated\common\modules\UNET\UNETworkingBindings.gen.cs:638)
+UnityEngine.Networking.NetworkTransport:AddHost(HostTopology, Int32) (at C:\buildslave\unity\build\artifacts\generated\common\modules\UNET\UNETworkingBindings.gen.cs:622)
+UnityEngine.Networking.NetworkClient:PrepareForConnect(Boolean) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:430)
+UnityEngine.Networking.NetworkClient:PrepareForConnect() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:399)
+UnityEngine.Networking.NetworkClient:Connect(String, Int32) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkClient.cs:302)
+UnityEngine.Networking.NetworkManager:StartClient(MatchInfo, ConnectionConfig) (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:488)
+UnityEngine.Networking.NetworkManager:StartClient() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkManager.cs:511)
+OverriddenNetworkDiscovery:OnReceivedBroadcast(String, String) (at C:\Users\Eyitayo\Documents\GitHub\Prototyping\Assets\OverriddenNetworkDiscovery.cs:11)
+UnityEngine.Networking.NetworkDiscovery:Update() (at C:\buildslave\unity\build\Extensions\Networking\Runtime\NetworkDiscovery.cs:330)
+
+[C:/buildslave/unity/build/Runtime/Networking/UNETNetLibraryManager.cpp line 425] 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/modules/UNET/UNETworkingBindings.gen.cs Line: 638)
+
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}

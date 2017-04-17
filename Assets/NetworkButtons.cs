@@ -38,8 +38,7 @@ public class NetworkButtons : NetworkBehaviour {
 		}*/
         startBroadcasting = true;
         networkDiscovery.StartAsServer();
-
-       
+        manager.StartHost();
 
 	}
 
