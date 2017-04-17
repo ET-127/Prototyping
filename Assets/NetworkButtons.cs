@@ -19,9 +19,10 @@ public class NetworkButtons : NetworkBehaviour {
 	}
 
 	public void BtnClient(){
-		
-		networkDiscovery.Initialize();
-		networkDiscovery.StartAsClient ();
+
+		manager.StartClient ();
+		//networkDiscovery.Initialize();
+		//networkDiscovery.StartAsClient ();
 
 	}
 

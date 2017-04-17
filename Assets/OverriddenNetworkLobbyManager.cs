@@ -8,21 +8,21 @@ public class OverriddenNetworkLobbyManager : NetworkLobbyManager {
 	public NetworkDiscovery networkDiscovery;
 	public override void OnStartHost()
 	{
-
-		networkDiscovery.Initialize ();
-		networkDiscovery.StartAsServer ();
+		//networkDiscovery.Initialize ();
+		//networkDiscovery.StartAsServer ();
+		
 
 	}
 
 	public override void OnStartClient(NetworkClient client)
 	{
-		networkDiscovery.showGUI = false;
+		//networkDiscovery.showGUI = false;
 		//discovery.StopBroadcast();
 	}
 
 	public override void OnStopClient()
 	{
-		networkDiscovery.StopBroadcast();
-		networkDiscovery.showGUI = true;
+		//networkDiscovery.StopBroadcast();
+		//networkDiscovery.showGUI = true;
 	}
 }
