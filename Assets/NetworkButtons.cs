@@ -24,7 +24,12 @@ public class NetworkButtons : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
+        if(startBroadcasting == true && manager.numPlayers > 1)
+        {
+
+            networkDiscovery.StopBroadcast();
+
+        }
 		
 	}
 
