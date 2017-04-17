@@ -5,24 +5,24 @@ using UnityEngine.Networking;
 
 public class OverriddenNetworkLobbyManager : NetworkLobbyManager {
 
-	public NetworkDiscovery discovery;
-
+	public NetworkDiscovery networkDiscovery;
 	public override void OnStartHost()
 	{
 
-		discovery.Initialize ();
-		discovery.StartAsServer ();
+		networkDiscovery.Initialize ();
+		networkDiscovery.StartAsServer ();
 
 	}
 
 	public override void OnStartClient(NetworkClient client)
 	{
-		discovery.showGUI = false;
+		networkDiscovery.showGUI = false;
+		//discovery.StopBroadcast();
 	}
 
 	public override void OnStopClient()
 	{
-		discovery.StopBroadcast();
-		discovery.showGUI = true;
+		networkDiscovery.StopBroadcast();
+		networkDiscovery.showGUI = true;
 	}
 }

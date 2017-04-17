@@ -14,7 +14,7 @@ public class NetworkButtons : NetworkBehaviour {
 
 	public void BtnHost(){
 
-		manager.StartHost();
+		manager.StartHost ();
 
 	}
 
