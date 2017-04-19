@@ -23,16 +23,18 @@ public class Car : NetworkBehaviour {
 
     public Vector3 downForce;
 
-    [SyncVar]
+    //[SyncVar]
 	public float forwardSlip;
 
-	[SyncVar]
+	//[SyncVar]
 	public float sidewaysSlip;
 
     public AudioSource carRev;
     public AudioSource carIdle;
     public float engineDecay;
     public float engineDecayTime;
+
+    public bool switchedAudio;
 
     float refVel;
 	float turnVel;
@@ -59,15 +61,20 @@ public class Car : NetworkBehaviour {
 
         carRev.volume = Mathf.SmoothDamp(carRev.volume, Input.GetAxisRaw("Vertical"),ref engineDecay,engineDecayTime);
 
-        if (carRev.volume < carIdle.volume)
+        if (carRev.volume < carIdle.volume && !switchedAudio)
         {
             carIdle.mute = false;
             carRev.mute = true;
+            switchedAudio = true;
 
-        } else
-        {
+            //carIdle.pitch = carRev.pitch;
+
+        } else if (carRev.volume > carIdle.volume){
             carIdle.mute = true;
             carRev.mute = false;
+            switchedAudio = false;
+
+            carIdle.pitch = 0.75f;
 
         }
     }
@@ -107,9 +114,10 @@ public class Car : NetworkBehaviour {
 		carStats = GetComponent<CarStats> ();
 		wheels = GetComponentsInChildren<WheelCollider> ();
 		//maxSlipLimitF = carStats.AsymptoteF.x;
-		maxSlipLimitS = carStats.ExtremumS.x;
+		maxSlipLimitS = carStats.ExtremumS.x * 0.5f;
+        maxSlipLimitF = carStats.AsymptoteF.x * 0.5f;
 
-		gearRatios = carStats.gearRatios.ToArray();
+        gearRatios = carStats.gearRatios.ToArray();
 
 		carStats.wheelDiameter = wheels[0].radius * 2;
 
@@ -330,11 +338,16 @@ public class Car : NetworkBehaviour {
 
 	void Cmd_SkidMarks(){
 
+        Debug.Log(Mathf.Abs(sidewaysSlip));
+
 		for (int i = 0; i < wheels.Length; i++) {
 
 			WheelHit hit = new WheelHit();
 
 			wheels [i].GetGroundHit(out hit);
+
+            sidewaysSlip = hit.sidewaysSlip;
+            forwardSlip = hit.forwardSlip;
 
 			if (skidmarks[i] == null && (Mathf.Abs (sidewaysSlip) > maxSlipLimitS || (Mathf.Abs(forwardSlip) > maxSlipLimitF))) {
 
@@ -370,7 +383,7 @@ public class Car : NetworkBehaviour {
 
 				}
 
-			} else if (skidmarks[i] != null && (Mathf.Abs (sidewaysSlip) < maxSlipLimitS || Mathf.Abs(forwardSlip) < maxSlipLimitF) ) {
+			} else if (skidmarks[i] != null && (Mathf.Abs (sidewaysSlip) < maxSlipLimitS && Mathf.Abs(forwardSlip) < maxSlipLimitF) ) {
 
 				Destroy(skidmarks[i].gameObject,skidmarks[i].time);
 				skidmarks [i] = null;
