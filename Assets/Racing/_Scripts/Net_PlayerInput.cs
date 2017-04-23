@@ -27,7 +27,7 @@ public class Net_PlayerInput : NetworkBehaviour {
 		h = Input.GetAxisRaw("Horizontal") * -s;
 		v = Input.GetAxisRaw("Vertical") * s;
 		b = Input.GetKey (KeyCode.Space);
-
+		//Send these inputs to the Drive function in Car.cs
 		car.Cmd_Drive (h,v,b);
 	
 	}

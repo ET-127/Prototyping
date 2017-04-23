@@ -41,8 +41,6 @@ public class Car : NetworkBehaviour {
 	CarStats carStats; // Info about the car 
 	Rigidbody rb; // 
 
-
-
     void CarAudio()
     {
 
@@ -113,9 +111,9 @@ public class Car : NetworkBehaviour {
 	
 		carStats = GetComponent<CarStats> ();
 		wheels = GetComponentsInChildren<WheelCollider> ();
-		//maxSlipLimitF = carStats.AsymptoteF.x;
-		maxSlipLimitS = carStats.ExtremumS.x * 0.5f;
-        maxSlipLimitF = carStats.AsymptoteF.x * 0.5f;
+
+		//maxSlipLimitS = carStats.ExtremumS.x * 0.5f;
+        //maxSlipLimitF = carStats.AsymptoteF.x * 1f;
 
         gearRatios = carStats.gearRatios.ToArray();
 
@@ -284,7 +282,7 @@ public class Car : NetworkBehaviour {
 		SwitchGear ();
 		SpeedControl ();
 		CorrectWheelPos ();
-		Cmd_SkidMarks ();
+		//Cmd_SkidMarks ();
 		DownForce ();
         CarAudio();
 
@@ -338,7 +336,7 @@ public class Car : NetworkBehaviour {
 
 	void Cmd_SkidMarks(){
 
-        Debug.Log(Mathf.Abs(sidewaysSlip));
+		Debug.Log(Mathf.Abs(sidewaysSlip));
 
 		for (int i = 0; i < wheels.Length; i++) {
 
@@ -349,7 +347,9 @@ public class Car : NetworkBehaviour {
             sidewaysSlip = hit.sidewaysSlip;
             forwardSlip = hit.forwardSlip;
 
-			if (skidmarks[i] == null && (Mathf.Abs (sidewaysSlip) > maxSlipLimitS || (Mathf.Abs(forwardSlip) > maxSlipLimitF))) {
+			if (skidmarks[i] == null && (Mathf.Abs (sidewaysSlip) >= maxSlipLimitS || (Mathf.Abs(forwardSlip) >= maxSlipLimitF))) {
+
+				//Debug.Log("SKID BABY SKID!");
 
 				skidmarks[i] =  Instantiate(skidMarkPrefab).GetComponent<TrailRenderer>();
 
@@ -368,6 +368,8 @@ public class Car : NetworkBehaviour {
 				}
 
 			} else if (skidmarks[i] != null && (Mathf.Abs (sidewaysSlip) > maxSlipLimitS || Mathf.Abs(forwardSlip) > maxSlipLimitF)) {
+
+				//Debug.Log("BABY SKID BABY!");
 
 				RaycastHit rayHit = new RaycastHit ();
 
