@@ -15,7 +15,7 @@ public class FollowCar : MonoBehaviour {
 	void Start () {
 
 		car = GameObject.FindGameObjectWithTag ("Player").transform;
-		optimum = car.FindChild ("Optimum").transform;
+		optimum = car.FindChild ("CameraPos").transform;
 		optimum.localPosition = posOffset;
 
 		StartCoroutine (changeFollowSpeed ());

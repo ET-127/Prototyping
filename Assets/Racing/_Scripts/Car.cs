@@ -3,143 +3,80 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Car : NetworkBehaviour {
+public class Car : MonoBehaviour {
 
 	public WheelCollider[] wheels; //List of wheel colliders owned by the car
 	public List<MeshRenderer> wheelMeshes = new List<MeshRenderer>(); //List of rendered wheels
-	public List<TrailRenderer> skidmarks = new List<TrailRenderer>();
-	public GameObject skidMarkPrefab;
+	public float topSpeed; // The fastest the car can go
+	public float torque; // The torque the wheels are currently exerting
+	public float engineTorque; // The base torque of the engine
+	public float brakeTorque; // The ammount of torque used to brake
+	public float steerAngle; // The angle at which the wheels turn when steering
+	public float steerTime;// How long it takes to turn the wheel to its steer angle
 
-	public float maxSlipLimitS;
-	public float maxSlipLimitF;
+	public float frontFrictionStiffness;// The stiffness of the steering on the front wheels of the car
+	public float rearFrictionStiffness;// The stiffness of the steering on the rear wheels of the car
 
-	public float[] gearRatios;
-	public float[] gearTopSpeeds;
-	public float outputTorque;
-	public float turnTime;
+	public float springFront;// The spring force on the front wheels of the car
+	public float springBack;// The spring force on the rear wheels of the car
+	public float dampingFront;// The amount of spring damping on the front wheels of the car
+	public float dampingBack;// The amount of spring damping on the rear wheels of the car
 
-	public AnimationCurve forwardFrictionCurve;
-	public AnimationCurve sideFrictionCurve;
+	public Vector2 ExtremumF = new Vector2(0.4f,1); // The co-ordinate of the Extrumum for forward friction
+	public Vector2 AsymptoteF = new Vector2(0.8f,0.5f);// The co-ordinate of the Asymptote for the forward friction
+	public Vector2 ExtremumS = new Vector2(0.2f,1);// The co-ordinate of the Extrumum for the sideways friction
+	public Vector2 AsymptoteS = new Vector2(0.5f,0.75f);// The co-ordinate of the Asymptote for the sideways friction
 
-    public Vector3 downForce;
+	public float downForceModifier;// How many times larger should downforcebe thean drag?
 
-    //[SyncVar]
-	public float forwardSlip;
+	public int numOfGears;// The number of gears the car has
+	public float[] gearRatios;//An array of the gear ratios of the car
+	public float[] gearTopSpeeds;// Each gear ratios respective top speed
+	public float transmission;//The gear transmission
+	public int currentGear = 1;//The car's current gear
 
-	//[SyncVar]
-	public float sidewaysSlip;
+	public float wheelDiameter;//The diameter of the wheel
 
-    public AudioSource carRev;
-    public AudioSource carIdle;
-    public float engineDecay;
-    public float engineDecayTime;
+	public float currentSpeed;//The car's current speed
 
-    public bool switchedAudio;
+	public float milestokilo = 2.23694f;
 
-    float refVel;
-	float turnVel;
-	CarStats carStats; // Info about the car 
-	Rigidbody rb; // 
+	public AnimationCurve forwardFrictionCurve;// A curve describing the behaviour of the forward tire friction
+	public AnimationCurve sideFrictionCurve;// A curve describing the behaviour of the sideways tire friction
 
-    void CarAudio()
-    {
+    public AudioSource carRev;//The car rev sound effect
+    public AudioSource carIdle;//The car idling sound effect
+    public float engineDecay;// The rev sound's current decay
+    public float engineDecayTime;//The time taken for the rev sound to decay
 
-        if (carStats.currentGear > 0)
-        {
+	public Vector3 downForce;//The downforce
+    public bool isIdle;//Is the car idling
 
-            carRev.pitch = 0.5f + (carStats.currentSpeed) / (carStats.gearTopSpeeds[carStats.currentGear]);
+	float steerRefVel;//The reference velocity for steering
+	Rigidbody rb;//The Rigidbody component
 
-        }
-        else
-        {
-
-            carRev.pitch = 0.5f + (carStats.currentSpeed / carStats.gearTopSpeeds[carStats.currentGear]);
-
-        }
-
-        carRev.volume = Mathf.SmoothDamp(carRev.volume, Input.GetAxisRaw("Vertical"),ref engineDecay,engineDecayTime);
-
-        if (carRev.volume < carIdle.volume && !switchedAudio)
-        {
-            carIdle.mute = false;
-            carRev.mute = true;
-            switchedAudio = true;
-
-            //carIdle.pitch = carRev.pitch;
-
-        } else if (carRev.volume > carIdle.volume){
-            carIdle.mute = true;
-            carRev.mute = false;
-            switchedAudio = false;
-
-            carIdle.pitch = 0.75f;
-
-        }
-    }
-
-	void FrontFrictionGraph(){
-
-		forwardFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.ExtremumF.x, carStats.ExtremumF.y),new Keyframe(carStats.AsymptoteF.x, carStats.AsymptoteF.y));
-
-		forwardFrictionCurve.keys[1].time = carStats.ExtremumF.x;
-		forwardFrictionCurve.keys[1].value = carStats.ExtremumF.y;
-
-		forwardFrictionCurve.keys[2].time = carStats.AsymptoteF.x;
-		forwardFrictionCurve.keys[2].value = carStats.AsymptoteF.y;
-
-	}
-
-	void SideFrictionGraph(){
-
-		sideFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(carStats.ExtremumS.x, carStats.ExtremumS.y),new Keyframe(carStats.AsymptoteS.x, carStats.AsymptoteS.y));
-
-		sideFrictionCurve.keys[1].time = carStats.ExtremumS.x;
-		sideFrictionCurve.keys[1].value = carStats.ExtremumS.y;
-
-		sideFrictionCurve.keys[2].time = carStats.AsymptoteS.x;
-		sideFrictionCurve.keys[2].value = carStats.AsymptoteS.y;
-
-
-	}
-
+	public bool hold = true;// Should the car be held?
 
 	// Use this for initialization
 	void Start () {
 
-		if (!isLocalPlayer)
-			return;
-	
-		carStats = GetComponent<CarStats> ();
 		wheels = GetComponentsInChildren<WheelCollider> ();
+		wheelDiameter = wheels[0].radius * 2;
+		rb = GetComponent<Rigidbody> ();
 
-		//maxSlipLimitS = carStats.ExtremumS.x * 0.5f;
-        //maxSlipLimitF = carStats.AsymptoteF.x * 1f;
-
-        gearRatios = carStats.gearRatios.ToArray();
-
-		carStats.wheelDiameter = wheels[0].radius * 2;
-
-		float c = carStats.wheelDiameter * Mathf.PI;
+		float c = wheelDiameter * Mathf.PI;
 
 		for(int i = 0; i < gearRatios.Length;i++) {
 
-			carStats.gearTopSpeeds.Add( ((carStats.engineTorque / 60) / (gearRatios[i] * carStats.transmission)) * c * carStats.c);
-			                         
-		}
-
-		gearTopSpeeds = carStats.gearTopSpeeds.ToArray();
-
-		rb = GetComponent<Rigidbody> ();
-
-		for (int i = 0; i < wheels.Length; i++) {
-
-			skidmarks.Add (new TrailRenderer());
+			gearTopSpeeds[i] = ((engineTorque / 60) / (gearRatios[i] * transmission)) * c * milestokilo;
 
 		}
 
+		topSpeed = gearTopSpeeds[gearTopSpeeds.Length - 1];
+			
 		for (int i = 0; i < GetComponentsInChildren<MeshRenderer> ().Length; i++) {
 
-			wheelMeshes.Add (GetComponentsInChildren<MeshRenderer> () [i]);
+			wheelMeshes.Add(GetComponentsInChildren<MeshRenderer> () [i]);
 
 		}
 
@@ -150,147 +87,160 @@ public class Car : NetworkBehaviour {
 
 	}
 
+	void Hold () {
+
+		//Should the car be held in place?
+		if (hold) {
+
+			GetComponent<Rigidbody> ().velocity = Vector3.zero;
+
+		}
+
+	}
+
+	//Flip the car if it falls onto its back
+	void CarFlip () {
+
+		if(transform.up.y < -0.6f){
+
+			transform.eulerAngles = new Vector3 (transform.eulerAngles.x,transform.eulerAngles.y,0);
+			GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
+
+		}
+
+	}
+
+    void CarAudio()
+    {
+
+        if (currentGear > 0)
+        {
+
+            carRev.pitch = 0.5f + (currentSpeed) / (gearTopSpeeds[currentGear]);
+
+        }
+        else
+        {
+
+            carRev.pitch = 0.5f + (currentSpeed / gearTopSpeeds[currentGear]);
+
+        }
+
+        carRev.volume = Mathf.SmoothDamp(carRev.volume, Input.GetAxisRaw("Vertical"),ref engineDecay,engineDecayTime);
+
+		if (carRev.volume < carIdle.volume && !isIdle)
+        {
+            carIdle.mute = false;
+            carRev.mute = true;
+			isIdle = true;
+
+            //carIdle.pitch = carRev.pitch;
+
+        } else if (carRev.volume > carIdle.volume){
+            carIdle.mute = true;
+            carRev.mute = false;
+			isIdle = false;
+
+            carIdle.pitch = 0.75f;
+
+        }
+    }
+
+	void FrontFrictionGraph(){
+
+		//Create a graph with three points one at the origin one at the Extremum and one at the Asymptote
+		forwardFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(ExtremumF.x, ExtremumF.y),new Keyframe(AsymptoteF.x, AsymptoteF.y));
+
+	}
+
+	void SideFrictionGraph(){
+
+		//Create a graph with three points one at the origin one at the Extremum and one at the Asymptote
+		sideFrictionCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(ExtremumS.x, ExtremumS.y),new Keyframe(AsymptoteS.x, AsymptoteS.y));
+
+	}
+
 	void ForwardFriction(){
 
-		//Friction Stuff
-		WheelFrictionCurve frontFriction = wheels[0].forwardFriction;
-		WheelFrictionCurve rearFriction = wheels[0].forwardFriction;
+		//Store the current friction data for the front and rear wheels in two variables
+		WheelFrictionCurve friction = wheels[0].forwardFriction;
 
-		//Front
-		//Slip = X,Value = Y.
+		//Change the extremum's co-ordinate
+		friction.extremumSlip = ExtremumF.x;
+		friction.extremumValue = ExtremumF.y;
 
-		//Extremum
-		frontFriction.extremumSlip = carStats.ExtremumF.x;
-		frontFriction.extremumValue = carStats.ExtremumF.y;
+		//Change the asymptote's co-ordinate
+		friction.asymptoteSlip = AsymptoteF.x;
+		friction.asymptoteValue = AsymptoteF.y;
 
-		//Asymptote
-		frontFriction.asymptoteSlip = carStats.AsymptoteF.x;
-		frontFriction.asymptoteValue = carStats.AsymptoteF.y;
+		for (int i = 0; i < wheels.Length; i++) {
 
-		//Rear
-		//Slip = X,Value = Y.
-
-		//Extremum
-		rearFriction.extremumSlip = carStats.ExtremumF.x;
-		rearFriction.extremumValue = carStats.ExtremumF.y;
-
-		//Asymptote
-		rearFriction.asymptoteSlip = carStats.AsymptoteF.x;
-		rearFriction.asymptoteValue = carStats.AsymptoteF.y;
-
-		//Spring Stuff
-		JointSpring frontSuspension = wheels[0].suspensionSpring;
-		JointSpring rearSuspension = wheels[0].suspensionSpring;
-
-		frontSuspension.spring = carStats.springFront;
-		rearSuspension.spring = carStats.springBack;
-
-		for (int i = 0; i < wheels.Length - 2; i++) {
-
-			wheels[i].forwardFriction = frontFriction;
+			wheels[i].forwardFriction = friction;
 
 		}
-
-		for (int i = 2; i < wheels.Length; i++) {
-
-			wheels[i].forwardFriction = rearFriction;
-
-		}
-
-
+			
 	}
 
 	void SideFriction(){
 
-		//Friction Stuff
-		WheelFrictionCurve frontFriction = wheels[0].sidewaysFriction;
-		WheelFrictionCurve rearFriction = wheels[0].sidewaysFriction;
+		//Store the current friction data for the front and rear wheels in two variables
+		WheelFrictionCurve friction = wheels[0].sidewaysFriction;
 
-		frontFriction.stiffness = carStats.frontFrictionStiffness;
-		rearFriction.stiffness = carStats.rearFrictionStiffness;
+		//Change the extremum's co-ordinate
+		friction.extremumSlip = ExtremumS.x;
+		friction.extremumValue = ExtremumS.y;
 
-		//Front
-		//Slip = X,Value = Y.
+		//Change the asymptote's co-ordinate
+		friction.asymptoteSlip = AsymptoteS.x;
+		friction.asymptoteValue = AsymptoteS.y;
 
-		//Extremum
-		frontFriction.extremumSlip = carStats.ExtremumS.x;
-		frontFriction.extremumValue = carStats.ExtremumS.y;
+		for (int i = 0; i < wheels.Length; i++) {
 
-		//Asymptote
-		frontFriction.asymptoteSlip = carStats.AsymptoteS.x;
-		frontFriction.asymptoteValue = carStats.AsymptoteS.y;
-
-		//Rear
-		//Slip = X,Value = Y.
-
-		//Extremum
-		rearFriction.extremumSlip = carStats.ExtremumS.x;
-		rearFriction.extremumValue = carStats.ExtremumS.y;
-
-		//Asymptote
-		rearFriction.asymptoteSlip = carStats.AsymptoteS.x;
-		rearFriction.asymptoteValue = carStats.AsymptoteS.y;
-
-		//Spring Stuff
-		JointSpring frontSuspension = wheels[0].suspensionSpring;
-		JointSpring rearSuspension = wheels[0].suspensionSpring;
-
-		frontSuspension.spring = carStats.springFront;
-		rearSuspension.spring = carStats.springBack;
-
-		for (int i = 0; i < wheels.Length - 2; i++) {
-
-			wheels[i].sidewaysFriction = frontFriction;
-			wheels[i].suspensionSpring = frontSuspension;
+			wheels[i].sidewaysFriction = friction;
 
 		}
-
-		for (int i = 2; i < wheels.Length; i++) {
-
-			wheels[i].sidewaysFriction = rearFriction;
-			wheels[i].suspensionSpring = rearSuspension;
-
-		}
-
 
 	}
 
 	void SwitchGear(){
+		
+		//Is the car going faster than its current maximum?
+		if (currentSpeed >= gearTopSpeeds [currentGear]){
 
-		if (carStats.currentSpeed >= gearTopSpeeds [carStats.currentGear]){
+			//Then move up a gear
+			currentGear++;
 
-			carStats.currentGear++;
+		//Is the speed of the car lower than the maximum speed of the gear ratio below?
+		} else if(currentGear - 1 > -1 && currentSpeed <= gearTopSpeeds [currentGear - 1]){
 
-		} else if(carStats.currentGear - 1 > -1 && carStats.currentSpeed <= gearTopSpeeds [carStats.currentGear - 1]){
-
-			carStats.currentGear--;
+			//Then move down a gear
+			currentGear--;
 
 		}
 
-		carStats.currentGear = Mathf.Clamp(carStats.currentGear,0 , gearTopSpeeds.Length - 1);
+		//Restrict the current Gear to be no smaller than 0 nor bigger then the number of gears
+		currentGear = Mathf.Clamp(currentGear,0 , numOfGears - 1);
 
 	}
 		
-	[Client]
 	void Update () {
 
-		if (!isLocalPlayer)
-			return;
+		currentSpeed = rb.velocity.magnitude * milestokilo;
 
 		SideFrictionGraph ();
 		FrontFrictionGraph ();
 		SwitchGear ();
 		SpeedControl ();
-		CorrectWheelPos ();
-		//Cmd_SkidMarks ();
+		//CorrectWheelPos ();
 		DownForce ();
         CarAudio();
+		Hold ();
 
     }
 
 	void DownForce(){
 
-        downForce = Vector3.down * (0.5f * carStats.downForceModifier * carStats.drag * (carStats.currentSpeed * carStats.currentSpeed));
+		downForce = Vector3.down * (0.5f * downForceModifier * rb.drag * (currentSpeed * currentSpeed));
 
         rb.AddForce(downForce);
 
@@ -298,9 +248,11 @@ public class Car : NetworkBehaviour {
 
 	void SpeedControl(){
 
-		if (carStats.rb.velocity.magnitude >= carStats.topSpeed) {
+		//Is the car going faster than top speed?
+		if (rb.velocity.magnitude >= topSpeed) {
 
-			carStats.rb.velocity = carStats.rb.velocity.normalized * carStats.topSpeed;
+			//Set the current velocity to the speed cap
+			rb.velocity = rb.velocity.normalized * topSpeed;
 
 		}
 
@@ -308,126 +260,62 @@ public class Car : NetworkBehaviour {
 
 	void CorrectWheelPos(){
 
+		//The position of the wheel collider
 		Vector3 wheelPos;
+
+		//The rotation of the wheel collider
 		Quaternion wheelRot;
 
+		//For each wheel collider
 		for (int i = 0; i < wheels.Length; i++) {
 
+			//Get the wheel collider's position and rotation
 			wheels [i].GetWorldPose (out wheelPos, out wheelRot);
 
+			//Set the wheel mesh's position to that of the respective wheel collider 
 			wheelMeshes [i].transform.position  = wheelPos;
+
+			//Set the wheel mesh's rotation to that of the respective wheel collider 
 			wheelMeshes [i].transform.rotation = Quaternion.Euler(wheelRot.eulerAngles);
 
 		}
 
 	}
 
-	void GetSlip(WheelHit hit){
+	public void Drive(float h,float v,bool b){
 
-		if(!isLocalPlayer){
+		//Calculate the amount of torque provided by the current gear
+		torque = engineTorque * transmission * gearRatios [currentGear];
 
-			hit.sidewaysSlip = sidewaysSlip;
-			hit.forwardSlip = forwardSlip;
-
-		}
-
-	}
-
-
-	void Cmd_SkidMarks(){
-
-		Debug.Log(Mathf.Abs(sidewaysSlip));
-
-		for (int i = 0; i < wheels.Length; i++) {
-
-			WheelHit hit = new WheelHit();
-
-			wheels [i].GetGroundHit(out hit);
-
-            sidewaysSlip = hit.sidewaysSlip;
-            forwardSlip = hit.forwardSlip;
-
-			if (skidmarks[i] == null && (Mathf.Abs (sidewaysSlip) >= maxSlipLimitS || (Mathf.Abs(forwardSlip) >= maxSlipLimitF))) {
-
-				//Debug.Log("SKID BABY SKID!");
-
-				skidmarks[i] =  Instantiate(skidMarkPrefab).GetComponent<TrailRenderer>();
-
-				RaycastHit rayHit = new RaycastHit ();
-
-				Vector3 colliderCenterPoint = wheels [i].transform.TransformPoint (wheels [i].center);
-
-				if (Physics.Raycast (colliderCenterPoint, -wheels [i].transform.up, out rayHit, wheels [i].suspensionDistance + wheels [i].radius)) {
-
-					skidmarks[i].transform.position = rayHit.point + (wheels [i].transform.up * wheels [i].suspensionDistance);
-
-				} else {
-
-					skidmarks[i].transform.position = colliderCenterPoint - (wheels [i].transform.up * wheels [i].suspensionDistance);
-
-				}
-
-			} else if (skidmarks[i] != null && (Mathf.Abs (sidewaysSlip) > maxSlipLimitS || Mathf.Abs(forwardSlip) > maxSlipLimitF)) {
-
-				//Debug.Log("BABY SKID BABY!");
-
-				RaycastHit rayHit = new RaycastHit ();
-
-				Vector3 colliderCenterPoint = wheels [i].transform.TransformPoint (wheels [i].center);
-
-				if (Physics.Raycast (colliderCenterPoint, -wheels [i].transform.up, out rayHit, wheels [i].suspensionDistance + wheels [i].radius)) {
-
-					skidmarks[i].transform.position = rayHit.point + (wheels [i].transform.up * wheels [i].suspensionDistance);
-
-				} else {
-
-					skidmarks[i].transform.position = colliderCenterPoint - (wheels [i].transform.up * wheels [i].suspensionDistance);
-
-				}
-
-			} else if (skidmarks[i] != null && (Mathf.Abs (sidewaysSlip) < maxSlipLimitS && Mathf.Abs(forwardSlip) < maxSlipLimitF) ) {
-
-				Destroy(skidmarks[i].gameObject,skidmarks[i].time);
-				skidmarks [i] = null;
-
-			}
-
-		}
-
-	}
-
-	//[Command]
-	public void Cmd_Drive(float h,float v,bool b){
-
-		if(v == 0){
-
-			//b = true;
-
-		}
-
+		//For each front wheel
 		for (int i = 0; i < wheels.Length - 2; i++) {
 			
 			float angle = 0;
 
-			//refVel = 1 / turnVel;
+			// Multiply the horizontal axis by the steer angle to get the desired angle then clamp the desired angle between steerAngle and -steerAngle
+			angle = Mathf.Clamp (h * steerAngle,-steerAngle,steerAngle);
 
-			angle = Mathf.Clamp (h * carStats.steerAngle,-carStats.steerAngle,carStats.steerAngle);
-
-			wheels[i].steerAngle = Mathf.SmoothDampAngle(wheels[i].steerAngle,-angle,ref refVel,turnTime);
+			//Gradualy steer the tire to the desired angle
+			wheels[i].steerAngle = Mathf.SmoothDampAngle(wheels[i].steerAngle,-angle,ref steerRefVel,steerTime);
 
 		}
 
+		//For each rear wheel
 		for (int i = 2; i < wheels.Length; i++) {
 
+			//If the player wants to brake
 			if (b) {
 
-				wheels [i].brakeTorque = carStats.brakeTorque;
+				//Set the wheels' brake torque
+				wheels [i].brakeTorque = brakeTorque;
 
 			} else {
 
+				//Set the wheels' brake torque to 0
 				wheels [i].brakeTorque = 0;
 
-				wheels[i].motorTorque = v * carStats.torque * 0.5f;
+				//Set the wheels' torque
+				wheels[i].motorTorque = v * torque * 0.5f;
 
 
 			}

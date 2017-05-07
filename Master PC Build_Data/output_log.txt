@@ -15,28 +15,22 @@ Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build
 Loading C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.029 seconds
+- Completed reload, in  0.036 seconds
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Eyitayo\Documents\GitHub\Prototyping\Master PC Build_Data\Managed\System.dll (this message is harmless)
 desktop: 1280x1024 60Hz; virtual: 5120x2064 at -2560,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.370696 ms
+UnloadTime: 1.475289 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 3520 -> priority: 1 
-  Thread -> id: 46c -> priority: 1 
-NetworkDiscovery set broadcast data to:NetworkManager:localhost:7777
+  Thread -> id: 3780 -> priority: 1 
+  Thread -> id: 3774 -> priority: 1 
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+reactor filed to acomplish request with code {1234}, bytesReceived {0}
+Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:64003}
+ServerDisconnected due to error: Timeout
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-DontDestroyOnLoad only work for root GameObjects or components on root GameObjects.
- 
-(Filename:  Line: 462)
-
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 7.131789 ms
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 759.
-Total: 0.599405 ms (FindLiveObjects: 0.061074 ms CreateObjectMapping: 0.046811 ms MarkObjects: 0.483108 ms  DeleteObjects: 0.008411 ms)
 

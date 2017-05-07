@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
 using System.Collections;
 
-public class Net_PlayerInput : NetworkBehaviour {
+public class Net_PlayerInput : MonoBehaviour {
 
-	public float h;
-	public float v;
-	public bool b;
+	public float h;// The horizontal axis A and D/ Left and Right Arrow
+	public float v;// The veritcal axis W and S/Up and Down Arrow
+	public bool b;// Does the player want to break?
 
-	public float s = 1;
-	public Car car;
+	public float s = 1;// The sensitivity
+	public Car car;//The Car script
 
 	// Use this for initialization
 	void Start () {
 
+		//Get the car script from the car object
 		car = GetComponent<Car> ();
 	
 	}
@@ -21,14 +21,15 @@ public class Net_PlayerInput : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!isLocalPlayer)
-			return;
-		
+		// Multiply the vertical axis by the sensitivity appropriately
 		h = Input.GetAxisRaw("Horizontal") * -s;
 		v = Input.GetAxisRaw("Vertical") * s;
+
+		// Set b to whether or not the SPACE key is being pressed
 		b = Input.GetKey (KeyCode.Space);
-		//Send these inputs to the Drive function in Car.cs
-		car.Cmd_Drive (h,v,b);
+
+		//Send this data to the Drive function in Car.cs
+		car.Drive (h,v,b);
 	
 	}
 }

@@ -46,7 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CameraFollow.cs" />
      <Compile Include="Assets\Lobby\Scripts\DraggablePanel.cs" />
      <Compile Include="Assets\Lobby\Scripts\EventSystemChecker.cs" />
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyCountdownPanel.cs" />
@@ -59,27 +58,14 @@
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerEntry.cs" />
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerList.cs" />
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
-     <Compile Include="Assets\Net_PlayerInputMouse.cs" />
-     <Compile Include="Assets\NetworkButtons.cs" />
-     <Compile Include="Assets\OverriddenNetworkDiscovery.cs" />
-     <Compile Include="Assets\OverriddenNetworkLobbyManager.cs" />
-     <Compile Include="Assets\PlayerRoll.cs" />
+     <Compile Include="Assets\Racing\NetworkButtons.cs" />
+     <Compile Include="Assets\Racing\_Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Racing\_Scripts\Car.cs" />
-     <Compile Include="Assets\Racing\_Scripts\CarFlip.cs" />
-     <Compile Include="Assets\Racing\_Scripts\CarStats.cs" />
      <Compile Include="Assets\Racing\_Scripts\FollowCar.cs" />
      <Compile Include="Assets\Racing\_Scripts\GUI.cs" />
-     <Compile Include="Assets\Racing\_Scripts\GameModeManager.cs" />
-     <Compile Include="Assets\Racing\_Scripts\HoldPos.cs" />
      <Compile Include="Assets\Racing\_Scripts\Net_PlayerInput.cs" />
-     <Compile Include="Assets\Racing\_Scripts\NetworkManagerAddOns.cs" />
-     <Compile Include="Assets\Racing\_Scripts\Options.cs" />
-     <Compile Include="Assets\Racing\_Scripts\Place.cs" />
-     <Compile Include="Assets\Racing\_Scripts\PlayerNetworkManager.cs" />
-     <Compile Include="Assets\Racing\_Scripts\SyncNetworkPos.cs" />
-     <Compile Include="Assets\Racing\_Scripts\Track.cs" />
+     <Compile Include="Assets\Racing\_Scripts\RaceProgress.cs" />
      <Compile Include="Assets\Racing\_Scripts\Trigger.cs" />
-     <Compile Include="Assets\UnrealCar.cs" />
      <None Include="Assets\Lobby\Documentation.txt" />
      <None Include="Assets\Lobby\Instruction.txt" />
      <None Include="Assets\Fonts\OpenSans\License!.txt" />

@@ -10,16 +10,17 @@ public class Trigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider c){
 
-		if (c.transform.root.GetComponent<Place> () == null)
+		//If the object thats hit the collider does not keep track of their progress
+		if (c.transform.root.GetComponent<RaceProgress> () == null)
 			return;
+		//If the car has hit the first trigger
+		if(c.transform.root.GetComponent<RaceProgress>().hitTriggerOne && !c.transform.root.GetComponent<RaceProgress>().hitTriggerTwo && isTriggerTwo){
 
-		if(c.transform.root.GetComponent<Place>().hitTriggerOne && !c.transform.root.GetComponent<Place>().hitTriggerTwo && isTriggerTwo){
+			c.transform.root.GetComponent<RaceProgress> ().hitTriggerTwo = true;
 
-			c.transform.root.GetComponent<Place> ().hitTriggerTwo = true;
+		} else if(!c.transform.root.GetComponent<RaceProgress>().hitTriggerOne && !c.transform.root.GetComponent<RaceProgress>().hitTriggerTwo && isTriggerOne){
 
-		} else if(!c.transform.root.GetComponent<Place>().hitTriggerOne && !c.transform.root.GetComponent<Place>().hitTriggerOne && isTriggerOne){
-
-			c.transform.root.GetComponent<Place> ().hitTriggerOne = true;
+			c.transform.root.GetComponent<RaceProgress> ().hitTriggerOne = true;
 
 		}
 
